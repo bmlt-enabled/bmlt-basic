@@ -26,7 +26,7 @@
 define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
 // Include our configuration.
-require_once ( 'config-bmlt-basic.inc.php' );
+require_once ( dirname ( __FILE__ ).'/config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
 require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satellite-plugin.php' );
 
@@ -359,4 +359,23 @@ class bmlt_basic extends BMLTPlugin
         return null;
         }
 };
+/****************************************************************************************//**
+*                                      MAIN EXECUTION                                       *
+********************************************************************************************/
+
+static $basic_bmlt_object;
+
+if ( !isset ( $basic_bmlt_object ) && class_exists ( "bmlt_basic" ) )
+    {
+    $basic_bmlt_object = new bmlt_basic();
+    }
+
+if ( $basic_bmlt_object )
+    {
+    $basic_bmlt_object->ajax_router();
+    }
+else
+    {
+    echo 'UNABLE TO INITIALIZE THE BMLT SUBSYSTEM';
+    }
 ?>
