@@ -25,15 +25,13 @@
 
 define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
-global $bmlt_localization;  ///< Use this to control the localization.
-
-$bmlt_localization = 'en';  ///< This is the code for the appropriate localization.
-
+// Include our configuration.
+require_once ( 'config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
-require_once ( dirname ( __FILE__ ).'/bmlt-cms-satellite-plugin.php' );
+require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satellite-plugin.php' );
 
 /****************************************************************************************//**
-*   \class BMLTUTestPlugin                                                                  *
+*   \class bmlt_basic                                                                  *
 *                                                                                           *
 *   \brief This is the class that implements and encapsulates the plugin functionality.     *
 *   A single instance of this is created, and manages the plugin.                           *
@@ -42,21 +40,8 @@ require_once ( dirname ( __FILE__ ).'/bmlt-cms-satellite-plugin.php' );
 *   the page if things aren't working right.                                                *
 ********************************************************************************************/
 
-class BMLTUTestPlugin extends BMLTPlugin
+class bmlt_basic extends BMLTPlugin
 {
-    /************************************************************************************//**
-    *   \brief Constructor.                                                                 *
-    ****************************************************************************************/
-    function __construct ()
-        {
-        // This line is customized for the developer's test environment. If you are debugging on a local machine, you may want to change the first choice.
-        self::$default_rootserver = 'http://bmlt.newyorkna.org/main_server';
-        self::$default_map_center_latitude = 40.780281;
-        self::$default_map_center_longitude = -73.965497;
-        self::$default_map_zoom = 12;
-        parent::__construct ();
-        }
-    
     /************************************************************************************//**
     *   \brief Return an HTTP path to the AJAX callback target.                             *
     *                                                                                       *
@@ -64,7 +49,6 @@ class BMLTUTestPlugin extends BMLTPlugin
     ****************************************************************************************/
     protected function get_admin_ajax_base_uri()
         {
-        return $this->get_ajax_base_uri().'?utest_string=admin';
         }
     
     /************************************************************************************//**
@@ -74,7 +58,6 @@ class BMLTUTestPlugin extends BMLTPlugin
     ****************************************************************************************/
     protected function get_admin_form_uri()
         {
-        return $this->get_admin_ajax_base_uri();
         }
     
     /************************************************************************************//**
@@ -96,7 +79,7 @@ class BMLTUTestPlugin extends BMLTPlugin
     ****************************************************************************************/
     protected function get_plugin_path()
         {
-        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/';
+        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/BMLT-Satellite-Base-Class';
     
         return $ret;
         }
@@ -118,42 +101,46 @@ class BMLTUTestPlugin extends BMLTPlugin
         }
 
     /************************************************************************************//**
+    *   \brief This gets the default admin options from the object (not the DB).            *
+    *                                                                                       *
+    *   \returns an associative array, with the default option settings.                    *
+    ****************************************************************************************/
+    protected function geDefaultBMLTOptions ()
+        {
+        global $bmlt_basic_configuration;
+        // These are the defaults. If the saved option has a different value, it replaces the ones in here.
+        return $bmlt_basic_configuration[0];
+        }
+    
+    /************************************************************************************//**
     *   \brief This gets the admin options from the database (allows CMS abstraction).      *
     *                                                                                       *
     *   \returns an associative array, with the option settings.                            *
     ****************************************************************************************/
     protected function cms_get_option ( $in_option_key   ///< The name of the option
                                         )
-        {        
+        {
+        global $bmlt_basic_configuration;
+        global $bmlt_basic_configuration_index;
+        
         $ret = null;
-        
-        session_start ();
-        
-        if ( isset ( $_SESSION ) && isset ( $_SESSION ['bmlt_settings'] ) )
-            {
-            $row = unserialize ( $_SESSION ['bmlt_settings'] );
-            }
-        else
-            {
-            $row = array ( $this->geDefaultBMLTOptions() );
-            }
         
         if ( $in_option_key != self::$admin2OptionsName )
             {
-            $index = max ( 1, intval(str_replace ( self::$adminOptionsName.'_', '', $in_option_key ) ));
+            $index = intval ( max ( $bmlt_basic_configuration_index - 1, intval(str_replace ( self::$adminOptionsName.'_', '', $in_option_key ) )) );
             
-            $ret = isset ( $row[$index - 1] ) ? $row[$index - 1] : $defaults[$index - 1];
+            $ret = $bmlt_basic_configuration[$index];
             }
         else
             {
-            $ret = array ( 'num_servers' => count ( $row ) );
+            $ret = array ( 'num_servers' => $bmlt_basic_configuration_index );
             }
 
         return $ret;
         }
     
     /************************************************************************************//**
-    *   \brief This gets the admin options from the database (allows CMS abstraction).      *
+    *   \brief You cannot set options in this implementation.                               *
     ****************************************************************************************/
     protected function cms_set_option ( $in_option_key,   ///< The name of the option
                                         $in_option_value  ///< the values to be set (associative array)
@@ -161,66 +148,17 @@ class BMLTUTestPlugin extends BMLTPlugin
         {
         $ret = false;
         
-        $index = 0;
-        
-        if ( $in_option_key != self::$admin2OptionsName )
-            {
-            $index = max ( 1, intval(str_replace ( self::$adminOptionsName.'_', '', $in_option_key ) ));
-
-            session_start ();
-    
-            if ( isset ( $_SESSION ) && isset ( $_SESSION ['bmlt_settings'] ) )
-                {
-                $row_data = unserialize ( $_SESSION ['bmlt_settings'] );
-                }
-            else
-                {
-                $row_data = array ( $this->geDefaultBMLTOptions() );
-                }
-            
-            if ( isset ( $row_data ) && is_array ( $row_data ) && count ( $row_data ) )
-                {
-                $row_data[$index - 1] = $in_option_value;
-                unset ( $_SESSION ['bmlt_settings'] );
-                $_SESSION ['bmlt_settings'] = serialize ( $row_data );
-    
-                $ret = true;
-                }
-            }
-        else
-            {
-            $ret = true; // Fake it, till you make it.
-            }
-        
         return $ret;
         }
     
     /************************************************************************************//**
-    *   \brief Deletes a stored option (allows CMS abstraction).                            *
+    *   \brief You cannot delete options in this implementation.                            *
     ****************************************************************************************/
     protected function cms_delete_option ( $in_option_key   ///< The name of the option
                                         )
         {
         $ret = false;
-        
-        session_start ();
-        
-        if ( isset ( $_SESSION ['bmlt_settings'] ) )
-            {
-            $row = unserialize (  $_SESSION ['bmlt_settings'] );
-            
-            if ( $in_option_key != self::$admin2OptionsName )
-                {
-                $index = max ( 1, intval(str_replace ( self::$adminOptionsName.'_', '', $in_option_key ) ));
-                
-                unset ( $row[$index - 1] );
-                
-                $_SESSION ['bmlt_settings'] = serialize ( $row );
-    
-                $ret = true;
-                }
-            }
-        
+
         return $ret;
         }
 
@@ -288,7 +226,7 @@ class BMLTUTestPlugin extends BMLTPlugin
                     }
                 }
             }
-        
+
         return $my_option_id;
         }
         
@@ -301,7 +239,6 @@ class BMLTUTestPlugin extends BMLTPlugin
     ****************************************************************************************/
     function admin_page ( )
         {
-        echo $this->return_admin_page ( );
         }
         
     /************************************************************************************//**
@@ -379,11 +316,6 @@ class BMLTUTestPlugin extends BMLTPlugin
         if ( $root_server_root )
             {
             $root_server = $root_server_root."/client_interface/xhtml/index.php";
-//             
-//             if ( $load_server_header )
-//                 {
-//                 $head_content .= bmlt_satellite_controller::call_curl ( "$root_server?switcher=GetHeaderXHTML".$this->my_params );
-//                 }
             
             $additional_css = '.bmlt_container * {margin:0;padding:0;text-align:center }';
 
@@ -420,51 +352,11 @@ class BMLTUTestPlugin extends BMLTPlugin
         }
         
     /************************************************************************************//**
-    *   \brief Returns any necessary head content for the admin.                            *
+    *   \brief No admin in this implementation.                                             *
     ****************************************************************************************/
     function admin_head ( )
-        {
-        $this->admin_ajax_handler ( );
-        
-        $head_content = $this->standard_head ( );   // We start with the standard stuff.
-        
-        $head_content .= '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>';  // Load the Google Maps stuff for our map.
-        
-        $head_content .= '<link rel="stylesheet" type="text/css" href="';
-        
-        $url = $this->get_plugin_path();
-        
-        $head_content .= htmlspecialchars ( $url );
-        
-        if ( !defined ('_DEBUG_MODE_' ) )
-            {
-            $head_content .= 'style_stripper.php?filename=';
-            }
-        
-        $head_content .= 'admin_styles.css" />';
-        
-        $head_content .= '<script type="text/javascript" src="';
-        
-        $head_content .= htmlspecialchars ( $url );
-        
-        if ( !defined ('_DEBUG_MODE_' ) )
-            {
-            $head_content .= 'js_stripper.php?filename=';
-            }
-        
-        $head_content .= 'admin_javascript.js"></script>';
-            
-        return $head_content;
+        {            
+        return null;
         }
 };
-
-/****************************************************************************************//**
-*                                   MAIN CODE CONTEXT                                       *
-********************************************************************************************/
-global $BMLTPluginOp;
-
-if ( !isset ( $BMLTPluginOp ) && class_exists ( "BMLTUTestPlugin" ) )
-    {
-    $BMLTPluginOp = new BMLTUTestPlugin();
-    }
 ?>
