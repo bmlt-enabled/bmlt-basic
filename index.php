@@ -2,6 +2,8 @@
 /********************************************************************************************
 *           EXAMPLE OF THE MOST BASIC IMPLEMENTATION OF THE BASIC BMLT SATELLITE            *
 *                                                                                           *
+*                       Find out more at: http://bmlt.magshare.org                          *
+*                                                                                           *
 * This file demonstrates how to integrate the default interactive search into any PHP file. *
 * You do not need a content management system (like WordPress or Joomla). You just need to  *
 * include the following in the same directory as the PHP file that is to run the satellite: *
