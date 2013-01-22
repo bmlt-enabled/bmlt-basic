@@ -68,7 +68,6 @@ class bmlt_basic extends BMLTPlugin
     protected function get_ajax_base_uri()
         {
         $ret = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'];
-
         return $ret;
         }
     
@@ -79,7 +78,7 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_plugin_path()
         {
-        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/BMLT-Satellite-Base-Class/';
+        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/bmlt_basic/BMLT-Satellite-Base-Class/';
     
         return $ret;
         }
