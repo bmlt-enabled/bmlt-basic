@@ -32,21 +32,21 @@ $bmlt_basic_configuration_index = 0;
 /****************************************************************************************//**
 *                                          SETTINGS                                         *
 ********************************************************************************************/
-$bmlt_basic_configuration[$bmlt_basic_configuration_index] = array ('root_server' => 'http://bmlt.newyorkna.org/main_server',
-                                                                    'map_center_latitude' => 40.780281,
-                                                                    'map_center_longitude' => -73.965497,
-                                                                    'map_zoom' => 12,
-                                                                    'bmlt_new_search_url' => '',
-                                                                    'bmlt_initial_view' => 'map',
-                                                                    'additional_css' => '',
-                                                                    'id' => $bmlt_basic_configuration_index + 1,
-                                                                    'setting_name' => '',
-                                                                    'bmlt_location_checked'=> 0,
-                                                                    'bmlt_location_services' => 0,
-                                                                    'theme' => 'default',
-                                                                    'distance_units' => 'mi',
-                                                                    'grace_period' => 15,
-                                                                    'time_offset' => 0
+$bmlt_basic_configuration[$bmlt_basic_configuration_index] = array ('root_server'               => 'http://bmlt.newyorkna.org/main_server',
+                                                                    'map_center_latitude'       => 40.780281,
+                                                                    'map_center_longitude'      => -73.965497,
+                                                                    'map_zoom'                  => 12,
+                                                                    'bmlt_new_search_url'       => '',
+                                                                    'bmlt_initial_view'         => 'map',
+                                                                    'additional_css'            => '',
+                                                                    'id'                        => $bmlt_basic_configuration_index + 1,
+                                                                    'setting_name'              => 'GNYR Server',
+                                                                    'bmlt_location_checked'     => 0,
+                                                                    'bmlt_location_services'    => 0,
+                                                                    'theme'                     => 'default',
+                                                                    'distance_units'            => 'mi',
+                                                                    'grace_period'              => 15,
+                                                                    'time_offset'               => 0
                                                                     );
 
 $bmlt_basic_configuration_index++;
