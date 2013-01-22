@@ -39,7 +39,7 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array ('root_server
                                                                     'bmlt_new_search_url' => '',
                                                                     'bmlt_initial_view' => 'map',
                                                                     'additional_css' => '',
-                                                                    'id' => 'BMLTAdminOptions_'.$bmlt_basic_configuration_index++,
+                                                                    'id' => $bmlt_basic_configuration_index + 1,
                                                                     'setting_name' => '',
                                                                     'bmlt_location_checked'=> 0,
                                                                     'bmlt_location_services' => 0,
@@ -48,5 +48,7 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array ('root_server
                                                                     'grace_period' => 15,
                                                                     'time_offset' => 0
                                                                     );
+
+$bmlt_basic_configuration_index++;
 
 ?>
