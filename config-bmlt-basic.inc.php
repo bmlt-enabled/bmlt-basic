@@ -31,36 +31,84 @@ $bmlt_basic_configuration_index = 0;
 
 /********************************************************************************************
 *                                          SETTINGS                                         *
+*                                                                                           *
+* These control the settings used by the displayed shortcodes. It is possible to have more  *
+* than one setting, but that is beyond the scope of this simple example.                    *
 ********************************************************************************************/
-$bmlt_basic_configuration[$bmlt_basic_configuration_index] =
-array (
+$bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
 
 /*************************************************************************************************************************************************************
-*   SETTING NAME (Don't Change)     SETTING VALUE (You should change these)                                                                                  *
+*                                                               CHANGE BELOW THIS LINE                                                                       *
+*                                                                                                                                                            *
+* Make sure that each of the lines below ends with a comma (,). The script will fail, otherwise.                                                             *
+*                                                                                                                                                            *
+**************************************************************************************************************************************************************
+*   SETTING NAME (Don't Change)                     SETTING VALUE (You can change these)                                                                     *
 *************************************************************************************************************************************************************/
-    /* This is the root server URL. The root server must be a minimum version 1.10.3 in order for this client to work.                                      */
-    'root_server'                   => 'http://bmlt.newyorkna.org/main_server', 
+    /********************************************************************************************************************************************************/
+    /** This is the root server URL. The root server must be a minimum version 1.10.3 in order for the '[[BMLT]]' shortcode to work.                        */
+    /** This affects all shortcodes.                                                                                                                        */
+    /** The URL to put in here is displayed at the top of the root server main screen. Copy that, and add it here.                                          */
+    /********************************************************************************************************************************************************/
     
-    'map_center_latitude'           => 40.780281,   /* The longitude, latitude and Google Map zoom of the initial search map.                               */
-    'map_center_longitude'          => -73.965497,
-    'map_zoom'                      => 12,
+    'root_server'                   =>          'http://bmlt.newyorkna.org/main_server', 
     
-    'bmlt_initial_view'             => 'map',       /* Can be 'map', 'text', 'advanced_map' or 'advanced_text'                                              */
+    /********************************************************************************************************************************************************/
+    /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes where to set the map when the satellite is initialized.       */
+    /********************************************************************************************************************************************************/
     
-    'bmlt_location_checked'         => 0,           /* Set this to 1 if you want the "This is a Location or Postcode" box to be checked on by default.      */
-    'bmlt_location_services'        => 0,           /* Set this to 1 if you want the location ("Find Near Me") services only available for mobile devices.  */
+    'map_center_latitude'           =>          40.780281,
+    'map_center_longitude'          =>          -73.965497,
+    'map_zoom'                      =>          12,
     
-    'theme'                         => 'default',   /* Can be 'default', 'BlueAndRed', 'BlueAndWhite', 'GNYR', 'GreenAndGold' or 'GreyAndMaroon'.           */
-    'distance_units'                => 'mi',        /* Can be 'mi' or 'km'.                                                                                 */
-    'grace_period'                  => 15,          /* How many minutes are allowed to go by before a meeting is considered "too late."                     */
-    'time_offset'                   => 0,           /* Generally left at 0 hours. If the server has a different time offset from this, indicate it here.    */
+    /********************************************************************************************************************************************************/
+    /** This controls which view is displayed when the satellite first shows up. This only affects the '[[BMLT]]' shortcode.                                */
+    /** Can be 'map', 'text', 'advanced_map' or 'advanced_text'                                                                                             */
+    /********************************************************************************************************************************************************/
+    
+    'bmlt_initial_view'             =>          'map',
+
+    /********************************************************************************************************************************************************/
+    /** In the More Options ('[[BMLT]]') map display, the popup can show a radius. This controls the units used for that radius.                            */
+    /** The '[[BMLT_MAP]]' and '[[BMLT_MOBILE]]' displays also shows distances, and this affects the units used for those.                                  */
+    /** Can be 'mi' or 'km'.                                                                                                                                */
+    /********************************************************************************************************************************************************/
+    
+    'distance_units'                =>          'mi',
+    
+    /********************************************************************************************************************************************************/
+    /** These affect how a couple of basic services appear. The first one is the "location" checkbox. The other controls the three "quick search" buttons.  */
+    /** These only affect the '[[BMLT]]' shortcode.                                                                                                         */
+    /********************************************************************************************************************************************************/
+    
+    'bmlt_location_checked'         =>          0,  /* Set this to 1 if you want the "This is a Location or Postcode" box to be checked on by default.      */
+    'bmlt_location_services'        =>          0,  /* Set this to 1 if you want the location ("Find Near Me") services only available for mobile devices.  */
+    
+    /********************************************************************************************************************************************************/
+    /** This selects the styling theme to be used for display. If you create your own, then set the directory name for that here.                           */
+    /** This affects the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes.                                                                       */
+    /** Can be 'default', 'BlueAndRed', 'BlueAndWhite', 'GNYR', 'GreenAndGold' or 'GreyAndMaroon'.                                                          */
+    /********************************************************************************************************************************************************/
+    
+    'theme'                         => 'default',
+    
+    /********************************************************************************************************************************************************/
+    /** These are optional. Most folks will leave them at these values. They are used by the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes.   */
+    /********************************************************************************************************************************************************/
+    
+    'grace_period'                  =>          15, /* How many minutes are allowed to go by before a meeting is considered "too late."                     */
+    'time_offset'                   =>          0,  /* Generally left at 0 hours. If the server has a different time offset from this, indicate it here.    */
 
 /*************************************************************************************************************************************************************
+*                                                           DON'T CHANGE BELOW THIS LINE                                                                     *
 *************************************************************************************************************************************************************/
-
+    
+    /// This is used internally. Leave it alone. It is not supposed to end with a comma.
+    
     'id'                            => $bmlt_basic_configuration_index + 1  /* Don't mess with this one. */
+
 );
 
-$bmlt_basic_configuration_index++;
+$bmlt_basic_configuration_index++;  // Leave this alone, too.
 
 ?>
