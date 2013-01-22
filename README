@@ -23,6 +23,12 @@ This class uses the BMLT Satellite Base Class, which is available on GitHub, her
 INSTALLATION
 ------------
 
+This is a super-simple implementation of the BMLT. The absolutely simplest file imaginable is here:
+
+<?php require_once ( 'bmlt_basic.class.php' ); ?>
+<head><?php $basic_bmlt_object->output_head('[[BMLT]]'); ?></head>
+<body><?php $basic_bmlt_object->output_body(); ?></body>
+
 CHANGELIST
 ----------
 = 3.0 =

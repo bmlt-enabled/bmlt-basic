@@ -53,7 +53,7 @@ require_once ( 'bmlt_basic.class.php' );
      * Call the $basic_bmlt_object->standard_head() function, with your shortcode as   *
      * the parameter.                                                                  *
      *********************************************************************************** -->
-    <?php $basic_bmlt_object->output_head('[[BMLT]]') ?>
+    <?php $basic_bmlt_object->output_head('[[BMLT]]'); ?>
 <!-- *********************************************************************************** -->
 
     </head>
