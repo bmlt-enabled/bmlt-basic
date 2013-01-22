@@ -42,6 +42,26 @@ require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satelli
 
 class bmlt_basic extends BMLTPlugin
 {
+    var $my_shortcode = null;   ///< This will hold the given shortcode.
+    
+    /************************************************************************************//**
+    *   \brief Outputs the head HTML.                                                       *
+    ****************************************************************************************/
+    function output_head ( $in_shortcode
+                )
+        {
+        $this->my_shortcode = $in_shortcode;  // Save this.
+        echo $this->standard_head ( $this->my_shortcode );
+        }
+    
+    /************************************************************************************//**
+    *   \brief Outputs the body HTML.                                                       *
+    ****************************************************************************************/
+    function output_body ()
+        {
+        echo $this->content_filter ( $this->my_shortcode );
+        }
+    
     /************************************************************************************//**
     *   \brief Return an HTTP path to the AJAX callback target.                             *
     *                                                                                       *
@@ -78,7 +98,7 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_plugin_path()
         {
-        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/bmlt_basic/BMLT-Satellite-Base-Class/';
+        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/BMLT-Satellite-Base-Class/';
     
         return $ret;
         }
@@ -187,6 +207,8 @@ class bmlt_basic extends BMLTPlugin
                                                  $in_check_mobile = false   ///< True if this includes a check for mobile. Default is false.
                                                 )
         {
+        $my_option_id = 0;
+        
         if ( !$in_check_mobile && isset ( $this->my_http_vars['bmlt_settings_id'] ) && is_array ($this->getBMLTOptions ( $this->my_http_vars['bmlt_settings_id'] )) )
             {
             $my_option_id = $this->my_http_vars['bmlt_settings_id'];
@@ -211,9 +233,9 @@ class bmlt_basic extends BMLTPlugin
                     {
                     $my_option_id = intval ( $this->my_http_vars['bmlt_settings_id'] );
                     }
-                elseif ( $in_content = $in_content ? $in_content : $in_text )
+                elseif ( $in_text )
                     {
-                    $my_option_id_content = parent::cms_get_page_settings_id ( $in_content, $in_check_mobile );
+                    $my_option_id_content = parent::cms_get_page_settings_id ( $in_text, $in_check_mobile );
                     
                     $my_option_id = $my_option_id_content ? $my_option_id_content : $my_option_id;
                     }
@@ -317,13 +339,6 @@ class bmlt_basic extends BMLTPlugin
             $root_server = $root_server_root."/client_interface/xhtml/index.php";
             
             $additional_css = '.bmlt_container * {margin:0;padding:0;text-align:center }';
-
-            if ( $options['push_down_more_details'] )
-                {
-                $additional_css .= 'table#bmlt_container div.c_comdef_search_results_single_ajax_div{position:static;margin:0;width:100%;}';
-                $additional_css .= 'table#bmlt_container div.c_comdef_search_results_single_close_box_div{position:relative;left:100%;margin-left:-18px;}';
-                $additional_css .= 'table#bmlt_container div#bmlt_contact_us_form_div{position:static;width:100%;margin:0;}';
-                }
             
             if ( $options['additional_css'] )
                 {

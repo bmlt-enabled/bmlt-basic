@@ -32,7 +32,7 @@
 * disabled in actual implementation, so calls to the file will return nothing.				*
 ********************************************************************************************/
 
-require_once ( 'bmlt_satellite/bmlt_basic.class.php' );
+require_once ( 'bmlt_basic.class.php' );
 
 define ( '_TIME_ZONE_', 'America/New_York' );
 
