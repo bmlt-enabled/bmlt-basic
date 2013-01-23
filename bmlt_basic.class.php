@@ -350,18 +350,7 @@ class bmlt_basic extends BMLTPlugin
                 $head_content .= '<style type="text/css">'.preg_replace ( "|\s+|", " ", $additional_css ).'</style>';
                 }
             }
-        
-        $head_content .= '<script type="text/javascript" src="';
-        
-        $head_content .= htmlspecialchars ( $url );
-        
-        if ( !defined ('_DEBUG_MODE_' ) )
-            {
-            $head_content .= 'js_stripper.php?filename=';
-            }
-        
-        $head_content .= 'javascript.js"></script>';
-        
+
         return $head_content;
         }
         
