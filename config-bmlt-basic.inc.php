@@ -5,6 +5,9 @@
 *   \brief  This file contains the basic configuration directives for the standalone client.*
 *   \version 3.0                                                                            *
 *                                                                                           *
+*   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
+*   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
+*                                                                                           *
 *   This file is part of the Basic Meeting List Toolbox (BMLT).                             *
 *                                                                                           *
 *   Find out more at: http://bmlt.magshare.org                                              *
@@ -23,28 +26,42 @@
 *   along with this code.  If not, see <http://www.gnu.org/licenses/>.                      *
 ********************************************************************************************/
 
-global $bmlt_basic_configuration;
+/*************************************************************************************************************************************************************
+*############################################################# DON'T CHANGE BELOW THIS LINE #################################################################*
+*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*
+*************************************************************************************************************************************************************/
+
+global $bmlt_basic_configuration;       ///< These are used by the bmlt_basic class. Don't mess with them.
 global $bmlt_basic_configuration_index;
 
 $bmlt_basic_configuration = array();    ///< The configuration will be held in an array of associative arrays.
 $bmlt_basic_configuration_index = 0;
 
-/********************************************************************************************
-*                                          SETTINGS                                         *
-*                                                                                           *
-* These control the settings used by the displayed shortcodes. It is possible to have more  *
-* than one setting, but that is beyond the scope of this simple example.                    *
-********************************************************************************************/
 $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
 
 /*************************************************************************************************************************************************************
-*                                                               CHANGE BELOW THIS LINE                                                                       *
+*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
+*############################################################# DON'T CHANGE ABOVE THIS LINE #################################################################*
+*************************************************************************************************************************************************************/
+
+/*************************************************************************************************************************************************************
+*################################################################# CHANGE BELOW THIS LINE ###################################################################*
+*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*
+**************************************************************************************************************************************************************
+
+/*************************************************************************************************************************************************************
 *                                                                                                                                                            *
 * Make sure that each of the lines below ends with a comma (,). The script will fail, otherwise.                                                             *
 *                                                                                                                                                            *
 **************************************************************************************************************************************************************
+*                                                                       SETTINGS                                                                             *
+*                                                                                                                                                            *
+* These control the settings used by the displayed shortcodes. It is possible to have more than one setting, but that is beyond the scope of this simple     *
+* example.                                                                                                                                                   *
+**************************************************************************************************************************************************************
 *   SETTING NAME (Don't Change)                     SETTING VALUE (You can change these)                                                                     *
 *************************************************************************************************************************************************************/
+
     /********************************************************************************************************************************************************/
     /** This is the root server URL. The root server must be a minimum version 1.10.3 in order for the '[[BMLT]]' shortcode to work.                        */
     /** This affects all shortcodes.                                                                                                                        */
@@ -100,7 +117,13 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
     'time_offset'                   =>          0,  /* Generally left at 0 hours. If the server has a different time offset from this, indicate it here.    */
 
 /*************************************************************************************************************************************************************
-*                                                           DON'T CHANGE BELOW THIS LINE                                                                     *
+*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
+*################################################################ CHANGE ABOVE THIS LINE ####################################################################*
+*************************************************************************************************************************************************************/
+
+/*************************************************************************************************************************************************************
+*############################################################# DON'T CHANGE BELOW THIS LINE #################################################################*
+*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*
 *************************************************************************************************************************************************************/
     
     /// This is used internally. Leave it alone. It is not supposed to end with a comma.
@@ -111,4 +134,8 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
 
 $bmlt_basic_configuration_index++;  // Leave this alone, too.
 
+/*************************************************************************************************************************************************************
+*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
+*############################################################# DON'T CHANGE ABOVE THIS LINE #################################################################*
+*************************************************************************************************************************************************************/
 ?>

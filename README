@@ -11,9 +11,9 @@ system.
 REQUIREMENTS
 ------------
 
-The project requires a functioning BMLT root server ( http://magshare.org/blog/installing-the-root-server/ ).
+The project requires a functioning BMLT root server ( http://bmlt.magshare.net/root-server ).
 It does not implement a root server, but connects to an existing one.
-It requires PHP 5.0 or above.
+It requires a Web server capable of executing PHP 5.0 or above.
 
 This class uses the BMLT Satellite Base Class, which is available on GitHub, here:
 
@@ -23,11 +23,31 @@ This class uses the BMLT Satellite Base Class, which is available on GitHub, her
 INSTALLATION
 ------------
 
-This is a super-simple implementation of the BMLT. The absolutely simplest file imaginable is here:
+You need to move the "bmlt-basic" directory, and all its contents, into a PHP-executable directory
+that is the same level as the file that will include it.
 
-<?php require_once ( 'bmlt_basic.class.php' ); ?>
-<head><?php $basic_bmlt_object->output_head('[[BMLT]]'); ?></head>
+i.e.:
+
+    <html>---
+            |
+            V
+            <bmlt-basic>-----
+            |               |
+            |               V
+            |               bmlt_basic.class.php
+            |                       *
+            |                       *
+            |                      etc.
+            V
+            index.php
+            
+            
+Below, is a super-simple implementation of the BMLT:
+
+<?php require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' ); ?>
+<head><?php $basic_bmlt_object->output_head(); ?></head>
 <body><?php $basic_bmlt_object->output_body(); ?></body>
+
 
 CHANGELIST
 ----------

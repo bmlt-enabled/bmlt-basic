@@ -5,6 +5,12 @@
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
 *   \version 3.0                                                                            *
 *                                                                                           *
+*   In order to use this class, you need to take this entire directory and its contents,    *
+*   and place it at the same level of the file that you wish to use as your implementation. *
+*   The "index.php" file in the repository is an example of this. It is important that the  *
+*   implementation file be one level above this file (or at the same level as the           *
+*   "bmlt-basic" directory).                                                                *
+*                                                                                           *
 *   This file is part of the Basic Meeting List Toolbox (BMLT).                             *
 *                                                                                           *
 *   Find out more at: http://bmlt.magshare.org                                              *
@@ -23,10 +29,10 @@
 *   along with this code.  If not, see <http://www.gnu.org/licenses/>.                      *
 ********************************************************************************************/
 
-define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
+// define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
 // Include our configuration.
-require_once ( dirname ( __FILE__ ).'/config-bmlt-basic.inc.php' );
+require_once ( dirname ( __FILE__ ).'/../config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
 require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satellite-plugin.php' );
 

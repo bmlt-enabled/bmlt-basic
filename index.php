@@ -6,11 +6,9 @@
 *                                                                                           *
 * This file demonstrates how to integrate the default interactive search into any PHP file. *
 * You do not need a content management system (like WordPress or Joomla). You just need to  *
-* include the following in the same directory as the PHP file that is to run the satellite: *
-*                                                                                           *
-*           bmlt_basic.class.php        This is the base class for the implementation.      *
-*           config-bmlt-basic.inc.php   You will edit this class to establish the settings. *
-*           BMLT-Satellite-Base-Class (directory) This contains the main "engine".          *
+* include the 'bmlt-basic' directory, and all its contents, into the same directory as      *
+* this file. You will edit the 'config-bmlt-basic.inc.php' file to establish the settings.  *
+* The 'config-bmlt-basic.inc.php' file must be in the same directory as this file.          *
 *                                                                                           *
 * REQUIREMENTS:                                                                             *
 *   This needs to run on a server that supports PHP 5.0 or greater.                         *
