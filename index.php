@@ -30,7 +30,7 @@
 * PHP section. This will create a variable, called "$basic_bmlt_object", which will hold    *
 * an instance of our class.                                                                 *
 ********************************************************************************************/
-require_once ( 'bmlt_basic.class.php' );
+require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
 
 /********************************************************************************************
 * Now, you can start the standard HTML. PHP is mixed in with classic HTML. You declare PHP  *

@@ -31,13 +31,9 @@ require_once ( dirname ( __FILE__ ).'/config-bmlt-basic.inc.php' );
 require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satellite-plugin.php' );
 
 /****************************************************************************************//**
-*   \class bmlt_basic                                                                  *
+*   \class bmlt_basic                                                                       *
 *                                                                                           *
-*   \brief This is the class that implements and encapsulates the plugin functionality.     *
-*   A single instance of this is created, and manages the plugin.                           *
-*                                                                                           *
-*   This plugin registers errors by echoing HTML comments, so look at the source code of    *
-*   the page if things aren't working right.                                                *
+*   \brief 
 ********************************************************************************************/
 
 class bmlt_basic extends BMLTPlugin
@@ -45,17 +41,21 @@ class bmlt_basic extends BMLTPlugin
     var $my_shortcode = null;   ///< This will hold the given shortcode.
     
     /************************************************************************************//**
-    *   \brief Outputs the head HTML.                                                       *
+    *                                   CLIENT FUNCTIONS                                    *
     ****************************************************************************************/
-    function output_head ( $in_shortcode
-                )
+                
+    /************************************************************************************//**
+    *   \brief Outputs the head HTML, CSS and JavaScript.                                   *
+    ****************************************************************************************/
+    function output_head ( $in_shortcode = '[[bmlt]]'   ///< You need to provide a shortcode, if you want something other than the default.
+                        )
         {
         $this->my_shortcode = $in_shortcode;  // Save this.
         echo $this->standard_head ( $this->my_shortcode );
         }
-    
+                
     /************************************************************************************//**
-    *   \brief Outputs the body HTML.                                                       *
+    *   \brief Outputs the body HTML and JavaScript.                                        *
     ****************************************************************************************/
     function output_body ()
         {
@@ -63,22 +63,8 @@ class bmlt_basic extends BMLTPlugin
         }
     
     /************************************************************************************//**
-    *   \brief Return an HTTP path to the AJAX callback target.                             *
-    *                                                                                       *
-    *   \returns a string, containing the path.                                             *
+    *                    INTERNAL FUNCTIONS (NOT CALLED BY CLIENT)                          *
     ****************************************************************************************/
-    protected function get_admin_ajax_base_uri()
-        {
-        }
-    
-    /************************************************************************************//**
-    *   \brief Return an HTTP path to the basic admin form submit (action) URI              *
-    *                                                                                       *
-    *   \returns a string, containing the path.                                             *
-    ****************************************************************************************/
-    protected function get_admin_form_uri()
-        {
-        }
     
     /************************************************************************************//**
     *   \brief Return an HTTP path to the AJAX callback target.                             *
@@ -98,7 +84,7 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_plugin_path()
         {
-        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/BMLT-Satellite-Base-Class/';
+        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/bmlt-basic/BMLT-Satellite-Base-Class/';
     
         return $ret;
         }
@@ -132,7 +118,7 @@ class bmlt_basic extends BMLTPlugin
         }
     
     /************************************************************************************//**
-    *   \brief This gets the admin options from the database (allows CMS abstraction).      *
+    *   \brief This gets the admin options from the config file.                            *
     *                                                                                       *
     *   \returns an associative array, with the option settings.                            *
     ****************************************************************************************/
@@ -155,43 +141,6 @@ class bmlt_basic extends BMLTPlugin
             $ret = array ( 'num_servers' => $bmlt_basic_configuration_index );
             }
 
-        return $ret;
-        }
-    
-    /************************************************************************************//**
-    *   \brief You cannot set options in this implementation.                               *
-    ****************************************************************************************/
-    protected function cms_set_option ( $in_option_key,   ///< The name of the option
-                                        $in_option_value  ///< the values to be set (associative array)
-                                        )
-        {
-        $ret = false;
-        
-        return $ret;
-        }
-    
-    /************************************************************************************//**
-    *   \brief You cannot delete options in this implementation.                            *
-    ****************************************************************************************/
-    protected function cms_delete_option ( $in_option_key   ///< The name of the option
-                                        )
-        {
-        $ret = false;
-
-        return $ret;
-        }
-
-    /************************************************************************************//**
-    *   \brief This gets the page meta for the given page. (allows CMS abstraction).        *
-    *                                                                                       *
-    *   \returns a mixed type, with the meta data                                           *
-    ****************************************************************************************/
-    protected function cms_get_post_meta (  $in_page_id,    ///< The ID of the page/post
-                                            $in_settings_id ///< The ID of the meta tag to fetch
-                                            )
-        {
-        $ret = null;
-        
         return $ret;
         }
 
@@ -249,17 +198,6 @@ class bmlt_basic extends BMLTPlugin
             }
 
         return $my_option_id;
-        }
-        
-    /************************************************************************************//**
-    *                                   THE CMS CALLBACKS                                   *
-    ****************************************************************************************/
-        
-    /************************************************************************************//**
-    *   \brief Presents the admin page.                                                     *
-    ****************************************************************************************/
-    function admin_page ( )
-        {
         }
         
     /************************************************************************************//**
@@ -353,15 +291,83 @@ class bmlt_basic extends BMLTPlugin
 
         return $head_content;
         }
+    
+    /************************************************************************************//**
+    *                   THESE ARE ALL DISABLED IN THE BASIC SATELLITE                       *
+    ****************************************************************************************/
+    /************************************************************************************//**
+    *   \brief We don't do admin in this variant, so this makes that clear.                 *
+    *                                                                                       *
+    *   \returns null                                                                       *
+    ****************************************************************************************/
+    protected function get_admin_ajax_base_uri()
+        {
+        return null;
+        }
+    
+    /************************************************************************************//**
+    *   \brief We don't do admin in this variant, so this makes that clear.                 *
+    *                                                                                       *
+    *   \returns null                                                                       *
+    ****************************************************************************************/
+    protected function get_admin_form_uri()
+        {
+        return null;
+        }
+    
+    /************************************************************************************//**
+    *   \brief You cannot set options in this implementation.                               *
+    *                                                                                       *
+    *   \returns false                                                                      *
+    ****************************************************************************************/
+    protected function cms_set_option ( $in_option_key,   ///< The name of the option
+                                        $in_option_value  ///< the values to be set (associative array)
+                                        )
+        {
+        return false;
+        }
+    
+    /************************************************************************************//**
+    *   \brief You cannot delete options in this implementation.                            *
+    *                                                                                       *
+    *   \returns false                                                                      *
+    ****************************************************************************************/
+    protected function cms_delete_option ( $in_option_key   ///< The name of the option
+                                        )
+        {
+        return false;
+        }
+
+    /************************************************************************************//**
+    *   \brief This is declared to make it clear that we don't do post meta.                *
+    *                                                                                       *
+    *   \returns null                                                                       *
+    ****************************************************************************************/
+    protected function cms_get_post_meta (  $in_page_id,    ///< The ID of the page/post
+                                            $in_settings_id ///< The ID of the meta tag to fetch
+                                            )
+        {
+        return null;
+        }
         
     /************************************************************************************//**
     *   \brief No admin in this implementation.                                             *
+    *                                                                                       *
+    *   \returns null                                                                       *
     ****************************************************************************************/
     function admin_head ( )
         {            
         return null;
         }
+    
+    /************************************************************************************//**
+    *   \brief Prevents the admin page from being shown.                                    *
+    ****************************************************************************************/
+    function admin_page ( )
+        {
+        }
 };
+
 /****************************************************************************************//**
 *                                      MAIN EXECUTION                                       *
 ********************************************************************************************/
