@@ -48,7 +48,7 @@ require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
      * You should decide what shortcode you will use (our example uses the standard    *
      * '[[BMLT]]' default interactive search. You can see what other choices you have  *
      * by visiting this page: http://bmlt.magshare.net/shortcodes/                     *
-     * Call the $basic_bmlt_object->standard_head() function, with your shortcode as   *
+     * Call the $basic_bmlt_object->output_head() function, with your shortcode as     *
      * the parameter.                                                                  *
      *********************************************************************************** -->
     <?php $basic_bmlt_object->output_head('[[BMLT]]'); ?>
@@ -61,7 +61,7 @@ require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
      *                      STEP THREE: GENERATE THE BODY CONTENT                      *
      *                                                                                 *
      * This is almost exactly like STEP ONE, except that you are now calling the       *
-     * $basic_bmlt_object->content_filter() function. It does not need the shortcode.  *
+     * $basic_bmlt_object->output_body() function. It does not need the shortcode.     *
      *                                                                                 *
      *********************************************************************************** -->
     <?php $basic_bmlt_object->output_body(); ?>
