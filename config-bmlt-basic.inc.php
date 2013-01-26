@@ -107,7 +107,7 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
     /** Can be 'default', 'BlueAndRed', 'BlueAndWhite', 'GNYR', 'GreenAndGold' or 'GreyAndMaroon'.                                                          */
     /********************************************************************************************************************************************************/
     
-    'theme'                         => 'default',
+    'theme'                         =>          'default',
     
     /********************************************************************************************************************************************************/
     /** These are optional. Most folks will leave them at these values. They are used by the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes.   */
