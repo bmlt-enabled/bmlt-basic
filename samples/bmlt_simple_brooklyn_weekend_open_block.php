@@ -8,10 +8,12 @@
 *   switcher=GetSearchResults               This asks the server to return a list of meetings.      *
 *   formats[]=17                            This asks to look for open meetings (Open ID is 17).    *
 *   block_mode=1                            This asks the meetings to be in <div> elements.         *
-*   sort_key=time                           This says to sort by weekday, then start time.          *
+*   sort_key=weekday                        This says to sort by weekday, then town (all the same). *
+*   sort_dir=desc                           This reverses the usual Sunday -> Saturday order.       *
 *   meeting_key=location_city_subsection    This says that we will filter for boroughs.             *
 *   meeting_key_value=Brooklyn              This is the value for the borough field that we want.   *
-*   weekdays[]=2                            This tells it to filter for Mondays (only).             *
+*   weekdays[]=1                            This tells it to filter for Sundays.                    *
+*   weekdays[]=7                            This tells it to filter for Saturdays, as well.         *
 *                                                                                                   *
 * A detailed discussion of these formats can be found on this Web page:                             *
 *               http://bmlt.magshare.net/export-calling-syntax                                      *
@@ -23,8 +25,8 @@ require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>All Open Meetings In Brooklyn, NY, on Monday, Displayed in &lt;div&gt; Elements</title>
-        <?php $basic_bmlt_object->output_head('[[BMLT_SIMPLE(switcher=GetSearchResults&formats[]=17&block_mode=1&sort_key=time&meeting_key=location_city_subsection&meeting_key_value=Brooklyn&weekdays[]=2)]]'); ?>
+        <title>All Open Meetings In Brooklyn, NY, on Weekends, Displayed in &lt;div&gt; Elements</title>
+        <?php $basic_bmlt_object->output_head('[[BMLT_SIMPLE(switcher=GetSearchResults&formats[]=17&block_mode=1&sort_key=weekday&sort_dir=desc&meeting_key=location_city_subsection&meeting_key_value=Brooklyn&weekdays[]=1&weekdays[]=7)]]'); ?>
     </head>
     <body>
         <?php $basic_bmlt_object->output_body(); ?>

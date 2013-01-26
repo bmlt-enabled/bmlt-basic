@@ -1,9 +1,10 @@
 <?php
 /********************************************************************************************
-* Append '?simulate_smartphone=1' to the URI to see the mobile version show up (or just use *
-* a mobile device to connect).                                                              *
+* Append '?simulate_smartphone=1' to the URI to see the smartphone version show up.         *
 * Append '?WML=1' to see how this responds to a 'dumb' phone.                               *
 * Append '?WML=2' to see how this responds to a 'smartish' phone.                           *
+*                                                                                           *
+* Or...you could just test it by using a mobile device.                                     *
 ********************************************************************************************/
 
 require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );

@@ -1,5 +1,7 @@
 <?php
 /********************************************************************************************
+* This displays the "quick map search" interactive search. This is a simpler search than    *
+* the default interactive search.                                                           *
 ********************************************************************************************/
 
 require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
@@ -8,8 +10,8 @@ require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>Demonstration of Standalone BMLT Satellite, Running the Basic Map</title>
-        <?php $basic_bmlt_object->output_head('[[BMLT_MAP]]'); ?>
+        <title>Demonstration of Standalone BMLT Satellite, Running the Simple Interactive Map</title>
+        <?php $basic_bmlt_object->output_head('[[bmlt_map]]'); ?>
     </head>
     <body>
         <?php $basic_bmlt_object->output_body(); ?>
