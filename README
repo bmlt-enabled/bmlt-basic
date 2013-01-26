@@ -26,18 +26,21 @@ INSTALLATION
 You need to move the "bmlt-basic" directory, and all its contents, into a PHP-executable directory
 that is the same level as the file that will include it.
 
+You need to have the config-bmlt-basic.inc.php in the same directory. This is the file that will
+be modified to establish the settings.
+
 i.e.:
 
     <html>---
             |
             V
-            <bmlt-basic>-----
-            |               |
-            |               V
-            |               bmlt_basic.class.php
-            |                       *
-            |                       *
-            |                      etc.
+            <bmlt-basic>-----------------
+            |                           |
+            |                           V
+            V                           bmlt_basic.class.php
+            config-bmlt-basic.inc.php           *
+            |                                   *
+            |                                  etc.
             V
             index.php
             
@@ -52,5 +55,5 @@ Below, is a super-simple implementation of the BMLT:
 CHANGELIST
 ----------
 = 3.0 =
-* TBD
+* January 26, 2013
 * First release (version is to sync with the other satellite clients).
