@@ -3,4 +3,4 @@
 	url = git@github.com:MAGSHARE/BMLT-Satellite-Base-Class.git
 [submodule "bmlt-basic/BMLT-Satellite-Base-Class"]
 	path = bmlt-basic/BMLT-Satellite-Base-Class
-	url = git@github.com:MAGSHARE/BMLT-Satellite-Base-Class.git
+url=https://bitbucket.org/bmlt/bmlt-satellite-base-class.git
