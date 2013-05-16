@@ -115,7 +115,8 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
     
     'grace_period'                  =>          15, /* How many minutes are allowed to go by before a meeting is considered "too late."                     */
     'time_offset'                   =>          0,  /* Generally left at 0 hours. If the server has a different time offset from this, indicate it here.    */
-
+    'military_time'                 =>          0,  /* This is 1 if you want military (24-hour) time.                                                       */
+    
 /*************************************************************************************************************************************************************
 *^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
 *################################################################ CHANGE ABOVE THIS LINE ####################################################################*
