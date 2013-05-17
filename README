@@ -55,8 +55,9 @@ Below, is a super-simple implementation of the BMLT:
 CHANGELIST
 ----------
 = 3.0.12 =
-* TBD
+* May 16, 2013
 * Added the Military time field to the example config file.
+* Updated the base class to remove some warnings and whatnot.
 
 = 3.0.11 =
 * May 13, 2013
