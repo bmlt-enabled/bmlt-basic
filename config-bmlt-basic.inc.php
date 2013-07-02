@@ -3,7 +3,7 @@
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
-*   \version 3.0.16                                                                         *
+*   \version 3.0.17                                                                         *
 *                                                                                           *
 *   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
 *   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
@@ -116,6 +116,7 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
     'grace_period'                  =>          15, /* How many minutes are allowed to go by before a meeting is considered "too late."                     */
     'time_offset'                   =>          0,  /* Generally left at 0 hours. If the server has a different time offset from this, indicate it here.    */
     'military_time'                 =>          0,  /* This is 1 if you want military (24-hour) time.                                                       */
+    'startWeekday'                  =>          1,  /* This is 1-7, as the start weekday of each week (1 = Sunday, 7 = Saturday)                            */
     
 /*************************************************************************************************************************************************************
 *^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
