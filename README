@@ -54,6 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.0.19 =
+* December 7, 2013
+* Added French localization
+
 = 3.0.18 =
 * September 7, 2013
 * Some German localization corrections.

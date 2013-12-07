@@ -3,7 +3,7 @@
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
-*   \version 3.0.18                                                                         *
+*   \version 3.0.19                                                                         *
 *                                                                                           *
 *   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
 *   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
@@ -39,6 +39,8 @@ $bmlt_basic_configuration_index = 0;
 
 $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
 
+global $bmlt_localization;  ///< Use this to control the localization.
+
 /*************************************************************************************************************************************************************
 *^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
 *############################################################# DON'T CHANGE ABOVE THIS LINE #################################################################*
@@ -47,7 +49,9 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (
 /*************************************************************************************************************************************************************
 *################################################################# CHANGE BELOW THIS LINE ###################################################################*
 *VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*
-**************************************************************************************************************************************************************
+*************************************************************************************************************************************************************/
+
+$bmlt_localization = 'en';  ///< This is the native language of the client. It needs to be one of the supported languages.
 
 /*************************************************************************************************************************************************************
 *                                                                                                                                                            *
