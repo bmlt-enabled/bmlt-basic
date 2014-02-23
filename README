@@ -54,6 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.0.21 =
+* February 23, 2014
+* This adds fixes for servers that run on non-standard TCP ports.
+
 = 3.0.20 =
 * December 31, 2013
 * Fixed a character set issue that affected Internet Exploder.
