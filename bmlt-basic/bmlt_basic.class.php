@@ -254,7 +254,10 @@ class bmlt_basic extends BMLTPlugin
         
         $load_server_header = $this->get_shortcode ( $in_text, 'bmlt');   // No GMAP API key or no "bmlt" shortcode, no BMLT window.
         
-        $this->my_http_vars['start_view'] = $options['bmlt_initial_view'];
+        if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['bmlt_initial_view'] ) )
+            {
+            $this->my_http_vars['start_view'] = $options['bmlt_initial_view'];
+            }
         
         $this->load_params ( );
         
