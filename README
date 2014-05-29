@@ -54,6 +54,11 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.0.24 =
+* TBD
+* Removed some warning-generating messages.
+* Added Danish localization.
+
 = 3.0.21 =
 * February 23, 2014
 * This adds fixes for servers that run on non-standard TCP ports.

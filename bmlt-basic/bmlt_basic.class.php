@@ -175,7 +175,10 @@ class bmlt_basic extends BMLTPlugin
             if ( $support_mobile === true )
                 {
                 $options = $this->getBMLTOptions ( 1 );
-                $support_mobile = strval ( $options['id'] );
+                if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['id'] ) )
+                    {
+                    $support_mobile = strval ( $options['id'] );
+                    }
                 }
 
             if ( $in_check_mobile && $support_mobile && !isset ( $this->my_http_vars['BMLTPlugin_mobile'] ) && (self::mobile_sniff_ua ($this->my_http_vars) != 'xhtml') )
@@ -198,7 +201,10 @@ class bmlt_basic extends BMLTPlugin
                 if ( !$my_option_id )   // If nothing else gives, we go for the default (first) settings.
                     {
                     $options = $this->getBMLTOptions ( 1 );
-                    $my_option_id = $options['id'];
+                    if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['id'] ) )
+                        {
+                        $my_option_id = $options['id'];
+                        }
                     }
                 }
             }
@@ -258,7 +264,10 @@ class bmlt_basic extends BMLTPlugin
         
         $url = $this->get_plugin_path();
         
-        $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
+        if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['theme'] ) )
+            {
+            $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
+            }
         
         if ( !defined ('_DEBUG_MODE_' ) )
             {
@@ -269,7 +278,10 @@ class bmlt_basic extends BMLTPlugin
         
         $head_content .= '<link rel="stylesheet" type="text/css" href="';
         
-        $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
+        if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['theme'] ) )
+            {
+            $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
+            }
         
         if ( !defined ('_DEBUG_MODE_' ) )
             {
@@ -284,7 +296,7 @@ class bmlt_basic extends BMLTPlugin
             
             $additional_css = '.bmlt_container * {margin:0;padding:0;text-align:center }';
             
-            if ( $options['additional_css'] )
+            if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['additional_css'] ) && $options['additional_css'] )
                 {
                 $additional_css .= $options['additional_css'];
                 }
