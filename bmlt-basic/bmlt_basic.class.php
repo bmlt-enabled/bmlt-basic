@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.0.21                                                                         *
+*   \version 3.0.24                                                                         *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -32,7 +32,7 @@
 // define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
 // Include our configuration.
-require_once ( dirname ( __FILE__ ).'/../config-bmlt-basic.inc.php' );
+require_once ( dirname ( dirname ( __FILE__ ) ).'/config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
 require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satellite-plugin.php' );
 
@@ -44,7 +44,8 @@ require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satelli
 
 class bmlt_basic extends BMLTPlugin
 {
-    var $my_shortcode = null;   ///< This will hold the given shortcode.
+    var $my_shortcode = null;           ///< This will hold the given shortcode.
+    var $m_is_logged_in_user = null;    ///< This will be true, if the user is logged in.
     
     /************************************************************************************//**
     *                                   CLIENT FUNCTIONS                                    *
@@ -79,7 +80,7 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_ajax_base_uri()
         {
-        $ret = 'http://'.$_SERVER['SERVER_NAME'].(($_SERVER['SERVER_PORT'] != 80) ? ':'.$_SERVER['SERVER_PORT'] : '').$_SERVER['SCRIPT_NAME'];
+        $ret = 'http://'.$_SERVER['SERVER_NAME'].(($_SERVER['SERVER_PORT'] != 80) ? ':'.$_SERVER['SERVER_PORT'] : '').str_replace ( '\\', '/', $_SERVER['PHP_SELF'] );
         return $ret;
         }
     
@@ -175,10 +176,7 @@ class bmlt_basic extends BMLTPlugin
             if ( $support_mobile === true )
                 {
                 $options = $this->getBMLTOptions ( 1 );
-                if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['id'] ) )
-                    {
-                    $support_mobile = strval ( $options['id'] );
-                    }
+                $support_mobile = (!isset ( $options['id'] ) || !$options['id'] ) ? "" : strval ( $options['id'] );
                 }
 
             if ( $in_check_mobile && $support_mobile && !isset ( $this->my_http_vars['BMLTPlugin_mobile'] ) && (self::mobile_sniff_ua ($this->my_http_vars) != 'xhtml') )
@@ -201,10 +199,7 @@ class bmlt_basic extends BMLTPlugin
                 if ( !$my_option_id )   // If nothing else gives, we go for the default (first) settings.
                     {
                     $options = $this->getBMLTOptions ( 1 );
-                    if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['id'] ) )
-                        {
-                        $my_option_id = $options['id'];
-                        }
+                    $my_option_id = (!isset ( $options['id'] ) || !$options['id'] ) ? "" : $options['id'];
                     }
                 }
             }
@@ -254,23 +249,17 @@ class bmlt_basic extends BMLTPlugin
         
         $load_server_header = $this->get_shortcode ( $in_text, 'bmlt');   // No GMAP API key or no "bmlt" shortcode, no BMLT window.
         
-        if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['bmlt_initial_view'] ) )
-            {
-            $this->my_http_vars['start_view'] = $options['bmlt_initial_view'];
-            }
+        $this->my_http_vars['start_view'] = (!isset ( $options['bmlt_initial_view'] ) || !$options['bmlt_initial_view'] ) ? "" : $options['bmlt_initial_view'];
         
         $this->load_params ( );
         
-        $root_server_root = $options['root_server'];
+        $root_server_root = (!isset ( $options['root_server'] ) || !$options['root_server'] ) ? "" : $options['root_server'];
         
         $head_content .= '<link rel="stylesheet" type="text/css" href="';
         
         $url = $this->get_plugin_path();
         
-        if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['theme'] ) )
-            {
-            $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
-            }
+        $head_content .= (!isset ( $options['theme'] ) || !$options['theme'] ) ? "" : htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
         
         if ( !defined ('_DEBUG_MODE_' ) )
             {
@@ -281,10 +270,7 @@ class bmlt_basic extends BMLTPlugin
         
         $head_content .= '<link rel="stylesheet" type="text/css" href="';
         
-        if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['theme'] ) )
-            {
-            $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
-            }
+        $head_content .= (!isset ( $options['theme'] ) || !$options['theme'] ) ? "" : htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
         
         if ( !defined ('_DEBUG_MODE_' ) )
             {
@@ -299,7 +285,7 @@ class bmlt_basic extends BMLTPlugin
             
             $additional_css = '.bmlt_container * {margin:0;padding:0;text-align:center }';
             
-            if ( isset ( $options ) && is_array ( $options ) && count ( $options ) && isset ( $options['additional_css'] ) && $options['additional_css'] )
+            if ( isset ( $options['additional_css'] ) && $options['additional_css'] )
                 {
                 $additional_css .= $options['additional_css'];
                 }
@@ -402,6 +388,7 @@ if ( !isset ( $basic_bmlt_object ) && class_exists ( "bmlt_basic" ) )
 
 if ( $basic_bmlt_object )
     {
+    $basic_bmlt_object->m_is_logged_in_user = isset ( $server ) && ($server instanceof c_comdef_server) && ($server->GetCurrentUserObj() instanceof c_comdef_user);
     $basic_bmlt_object->ajax_router();
     }
 else
