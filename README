@@ -54,6 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.0.23 =
+* July 17, 2014
+* Added Danish localization, and fixed a minor admin bug.
+
 = 3.0.22 =
 * June 25, 2014
 * Removed some warning-generating messages.
