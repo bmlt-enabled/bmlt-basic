@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.0.26                                                                         *
+*   \version 3.0.27                                                                         *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -28,6 +28,8 @@
 *   You should have received a copy of the GNU General Public License                       *
 *   along with this code.  If not, see <http://www.gnu.org/licenses/>.                      *
 ********************************************************************************************/
+
+ob_start();
 
 // define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
@@ -241,7 +243,12 @@ class bmlt_basic extends BMLTPlugin
                 {
                 $mobile_url .= '&simulate_smartphone';
                 }
-            ob_end_clean();
+                
+            if ( ob_get_contents() )
+                {
+                ob_end_clean();
+                }
+                
             header ( "location: $mobile_url" );
             die ( );
             }
@@ -393,4 +400,6 @@ else
     {
     echo 'UNABLE TO INITIALIZE THE BMLT SUBSYSTEM';
     }
+
+ob_end_flush ();
 ?>

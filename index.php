@@ -3,7 +3,7 @@
 *           EXAMPLE OF THE MOST BASIC IMPLEMENTATION OF THE BASIC BMLT SATELLITE            *
 *                                                                                           *
 *                       Find out more at: http://bmlt.magshare.org                          *
-*   \version 3.0.26                                                                         *
+*   \version 3.0.27                                                                         *
 *                                                                                           *
 * This file demonstrates how to integrate the default interactive search into any PHP file. *
 * You do not need a content management system (like WordPress or Joomla). You just need to  *
@@ -30,6 +30,15 @@
 * an instance of our class.                                                                 *
 ********************************************************************************************/
 require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
+
+/********************************************************************************************
+* If you want to support mobile devices with the simple BMLT mobile handler, then you will  *
+* need to add this line here (It must be before the start of HTML). It will intercept       *
+* mobile devices and redirect them. Don't put this line here if you don't want to have your *
+* mobile clients redirected. However, due to the limitations imposed by the BMLT Base class,*
+* you will need to have a "mobile-only" page. You should not have anything else in the file.*
+********************************************************************************************/
+// $basic_bmlt_object->output_head('[[BMLT_MOBILE]]');
 
 /********************************************************************************************
 * Now, you can start the standard HTML. PHP is mixed in with classic HTML. You declare PHP  *
