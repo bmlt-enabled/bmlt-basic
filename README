@@ -54,6 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.0.27 =
+* February 9, 2015
+* The BMLT_MOBILE shortcode didn't work. This was fixed with a combination of adding some code to the class, and also changing the way that it is used.
+
 = 3.0.26 =
 * January 31, 2015
 * Fixed an issue with the extra fields display in the regular shortcode display details.
