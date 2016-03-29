@@ -54,6 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.2.2 =
+* March 29, 2016
+* Fixed a JavaScript bug introduced in 3.2.2 (This should do it; I promise).
+
 = 3.2.1 =
 * March 29, 2016
 * Fixed a JavaScript bug introduced in 3.2.0.
