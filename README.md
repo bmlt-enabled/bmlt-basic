@@ -54,6 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.2.1 =
+* March 29, 2016
+* Fixed a JavaScript bug introduced in 3.2.0.
+
 = 3.2.0 =
 * March 29, 2016
 * Significant addition of the new [[bmlt_table]] shortcode.
