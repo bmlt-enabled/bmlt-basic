@@ -54,6 +54,14 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.2.3 =
+* March 30, 2016
+* Got rid of an undeclared variable warning.
+* Fixed a bug that caused rendering issues with the new table shortcode on Internet Exploder.
+* Fixed a minor style issue, where the selection triangle would flow below the text in large text situations.
+* Changed the styling for the selected header triangle to make the table display a bit more responsive.
+* Added samples for the new [[bmlt_table]] shortcode.
+
 = 3.2.2 =
 * March 29, 2016
 * Fixed a JavaScript bug introduced in 3.2.2 (This should do it; I promise).
