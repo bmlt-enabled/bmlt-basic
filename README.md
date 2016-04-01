@@ -54,6 +54,12 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.2.4 =
+* April 1, 2016 (Happy April Fools'!)
+* Broke the table styling out into separate files that are all loaded at once. This allows a lot more flexibility when implementing the table display.
+* Tweaked the GNYR style.
+* The JavaScript had a fundamental error that prevented multiple instances of the table. That's been fixed.
+
 = 3.2.3 =
 * March 30, 2016
 * Got rid of an undeclared variable warning.
