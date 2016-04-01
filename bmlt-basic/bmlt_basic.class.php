@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.2.3                                                                          *
+*   \version 3.2.4                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -290,6 +290,8 @@ class bmlt_basic extends BMLTPlugin
             }
         
         $head_content .= 'nouveau_map_styles.css" />';
+
+        $head_content .= '<link rel="stylesheet" type="text/css" href="'.$this->get_plugin_path().'/table_styles.php" />';
 
         if ( $root_server_root )
             {
