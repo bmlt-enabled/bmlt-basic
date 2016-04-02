@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.2.4                                                                          *
+*   \version 3.2.5                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -267,31 +267,40 @@ class bmlt_basic extends BMLTPlugin
         
         $root_server_root = $options['root_server'];
         
-        $head_content .= '<link rel="stylesheet" type="text/css" href="';
-        
         $url = $this->get_plugin_path();
-        
-        $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
-        
-        if ( !defined ('_DEBUG_MODE_' ) )
+    
+        if ( file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/themes/'.$options['theme'].'/styles.css' ) )
             {
-            $head_content .= 'style_stripper.php?filename=';
+            $head_content .= '<link rel="stylesheet" type="text/css" href="';
+    
+            $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
+    
+            if ( !defined ('_DEBUG_MODE_' ) )
+                {
+                $head_content .= 'style_stripper.php?filename=';
+                }
+    
+            $head_content .= 'styles.css" />';
+            }
+    
+        if ( file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/themes/'.$options['theme'].'/nouveau_map_styles.css' ) )
+            {
+            $head_content .= '<link rel="stylesheet" type="text/css" href="';
+    
+            $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
+    
+            if ( !defined ('_DEBUG_MODE_' ) )
+                {
+                $head_content .= 'style_stripper.php?filename=';
+                }
+    
+            $head_content .= 'nouveau_map_styles.css" />';
             }
         
-        $head_content .= 'styles.css" />';
-        
-        $head_content .= '<link rel="stylesheet" type="text/css" href="';
-        
-        $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
-        
-        if ( !defined ('_DEBUG_MODE_' ) )
+        if ( file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/table_styles.php' ) )
             {
-            $head_content .= 'style_stripper.php?filename=';
+            $head_content .= '<link rel="stylesheet" type="text/css" href="'.$url.'/table_styles.php" />';
             }
-        
-        $head_content .= 'nouveau_map_styles.css" />';
-
-        $head_content .= '<link rel="stylesheet" type="text/css" href="'.$this->get_plugin_path().'/table_styles.php" />';
 
         if ( $root_server_root )
             {
