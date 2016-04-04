@@ -54,9 +54,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
-= 3.2.5 =
-* TBD
+= 3.3.0 =
+* April 4, 2016
 * Made it so that we can have specialized themes, amied at only certain shortcodes.
+* Major revision of the [[bmlt_table]] shortcode, with a new structure aimed at improving responsive capability.
 
 = 3.2.4 =
 * April 1, 2016 (Happy April Fools'!)
