@@ -55,7 +55,7 @@ Below, is a super-simple implementation of the BMLT:
 CHANGELIST
 ----------
 = 3.3.3 =
-* TBD
+* April 9, 2016
 * Fixes a bug that could possibly cause issues with unparameterized instances of [[bmlt_table]].
 
 = 3.3.2 =
