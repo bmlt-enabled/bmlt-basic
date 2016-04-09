@@ -54,6 +54,13 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+= 3.3.2 =
+* April 9, 2016
+* Added a "Breaker Div" to the end of the meeting list.
+* Work on improving code quality.
+* Added more style hooks to the [[bmlt_table]] shortcode display.
+* Fixed a minor bug in the [[bmlt_table]] and [[bmlt_simple]] shortcodes, where supplying just a settings ID would be ignored.
+
 = 3.3.1 =
 * April 6, 2016
 * Made the weekday tab overflow hidden.
