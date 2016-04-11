@@ -47,13 +47,17 @@ i.e.:
             
 Below, is a super-simple implementation of the BMLT:
 
-<?php require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' ); ?>
-<head><?php $basic_bmlt_object->output_head(); ?></head>
-<body><?php $basic_bmlt_object->output_body(); ?></body>
+    <?php require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' ); ?>
+    <head><?php $basic_bmlt_object->output_head(); ?></head>
+    <body><?php $basic_bmlt_object->output_body(); ?></body>
 
 
 CHANGELIST
 ----------
+= 3.3.4 =
+* TBD
+* Refactored the base class for better understanding.
+
 = 3.3.3 =
 * April 9, 2016
 * Fixes a bug that could possibly cause issues with unparameterized instances of [[bmlt_table]].
