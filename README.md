@@ -208,6 +208,6 @@ CHANGELIST
 
 * Fixed a Swedish localization bug.
 
-= 3.0 =
-* January 26, 2013
+***Version 3.0.0** -January 26, 2013*
+
 * First release (version is to sync with the other satellite clients).
