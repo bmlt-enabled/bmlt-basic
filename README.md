@@ -49,6 +49,7 @@ Below, is a super-simple implementation of the BMLT:
     <head><?php $basic_bmlt_object->output_head(); ?></head>
     <body><?php $basic_bmlt_object->output_body(); ?></body>
 
+There are a number of sample files included with the installation. These are not necessary for running the app, but show how it can be used in various ways (not just the default map search).
 
 CHANGELIST
 ----------
