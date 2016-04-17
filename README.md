@@ -52,6 +52,10 @@ Below, is a super-simple implementation of the BMLT:
 
 CHANGELIST
 ----------
+***Version 3.3.5** -TBD*
+
+* Moved the samples up into the main directory, as it makes them immediately executable.
+
 ***Version 3.3.4** -April 14, 2016*
 
 * Refactored to make the code more straightforward and reusable.
