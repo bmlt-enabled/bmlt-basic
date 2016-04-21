@@ -49,9 +49,17 @@ Below, is a super-simple implementation of the BMLT:
     <head><?php $basic_bmlt_object->output_head(); ?></head>
     <body><?php $basic_bmlt_object->output_body(); ?></body>
 
+There are a number of sample files included with the installation. These are not necessary for running the app, but show how it can be used in various ways (not just the default map search).
 
 CHANGELIST
 ----------
+***Version 3.3.6** -April 21, 2016*
+
+* Moved the samples up into the main directory, as it makes them immediately executable.
+* The details display for the standard bmlt shortcode now has a grayed-out background. Clicking anywhere in that background dismisses the dialog.
+* The comments in some of the samples were wrong.
+* The samples are now at the main level, so they can be run directly.
+
 ***Version 3.3.4** -April 14, 2016*
 
 * Refactored to make the code more straightforward and reusable.
@@ -208,6 +216,6 @@ CHANGELIST
 
 * Fixed a Swedish localization bug.
 
-= 3.0 =
-* January 26, 2013
+***Version 3.0.0** -January 26, 2013*
+
 * First release (version is to sync with the other satellite clients).

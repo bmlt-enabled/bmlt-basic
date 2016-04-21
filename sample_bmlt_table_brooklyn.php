@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************************************
-* This is a demonstration of using the '[[bmlt_simple()]]' shortcode, with parameters that          *
+* This is a demonstration of using the '[[bmlt_table()]]' shortcode, with parameters that           *
 * ask the root server to return all closed meetings on Thursdays, in the borough of Brooklyn, NY.   *
 * This one asks that the results be arranged in a <table> element.                                  *
 *                                                                                                   *
