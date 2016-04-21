@@ -53,9 +53,12 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
-***Version 3.3.5** -TBD*
+***Version 3.3.6** -April 21, 2016*
 
 * Moved the samples up into the main directory, as it makes them immediately executable.
+* The details display for the standard bmlt shortcode now has a grayed-out background. Clicking anywhere in that background dismisses the dialog.
+* The comments in some of the samples were wrong.
+* The samples are now at the main level, so they can be run directly.
 
 ***Version 3.3.4** -April 14, 2016*
 
