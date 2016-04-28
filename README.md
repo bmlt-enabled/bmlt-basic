@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.3.7** -TBD*
+
+- Tweaked the README format to better match Atlassian's requirement.
+
 ***Version 3.3.6** -April 21, 2016*
 
 - Moved the samples up into the main directory, as it makes them immediately executable.
