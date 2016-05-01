@@ -56,6 +56,7 @@ CHANGELIST
 ***Version 3.3.7** -TBD*
 
 - Tweaked the README format to better match Atlassian's requirement.
+- Added [Doxygen](http://doxygen.nl) documentation.
 
 ***Version 3.3.6** -April 21, 2016*
 
