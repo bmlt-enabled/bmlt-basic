@@ -53,6 +53,11 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.3.9* ** *-May 22, 2016*
+
+- Now detect escape key to close meeting details overlay.
+- The mobile JS file was importing a non-HTTPS Google Maps API. I changed this to use the HTTPS version.
+
 ***Version 3.3.7* ** *-May 2, 2016*
 
 - Tweaked the README format to better match Atlassian's requirement.
