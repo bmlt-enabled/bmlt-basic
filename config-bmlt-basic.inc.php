@@ -3,7 +3,7 @@
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
-*   \version 3.4.0                                                                          *
+*   \version 3.4.1                                                                          *
 *                                                                                           *
 *   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
 *   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
@@ -68,12 +68,12 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
 *************************************************************************************************************************************************************/
 
     /********************************************************************************************************************************************************/
-    /** This is the root server URL. The root server must be a minimum version 1.10.3 in order for the '[[BMLT]]' shortcode to work.                        */
+    /** This is the root server URL.                                                                                                                        */
     /** This affects all shortcodes.                                                                                                                        */
     /** The URL to put in here is displayed at the top of the root server main screen. Copy that, and add it here.                                          */
     /********************************************************************************************************************************************************/
     
-    'root_server'                   =>          'http://bmlt.newyorkna.org/main_server', 
+    'root_server'                   =>          'http://bmlt.magshare.net/stable/main_server', 
     
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes where to set the map when the satellite is initialized.       */

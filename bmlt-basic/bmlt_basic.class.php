@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.4.0                                                                          *
+*   \version 3.4.1                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
