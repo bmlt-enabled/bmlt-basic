@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.4.4* ** *- March 12, 2017*
+
+- Added a fix to the [[BMLT_TABLE]] shortcode that ensures that empty columns in the table get non-breaking spaces if the value is empty.
+
 ***Version 3.4.3* ** *- January 1, 2017*
 
 - Added the "GNYR2" theme.
