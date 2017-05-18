@@ -3,7 +3,7 @@
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
-*   \version 3.4.4                                                                          *
+*   \version 3.4.6                                                                          *
 *                                                                                           *
 *   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
 *   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
@@ -82,6 +82,12 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
     'map_center_latitude'           =>          40.780281,
     'map_center_longitude'          =>          -73.965497,
     'map_zoom'                      =>          12,
+    
+    /********************************************************************************************************************************************************/
+    /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' what Geographic Region to assume as a search area.                       */
+    /********************************************************************************************************************************************************/
+
+    'region_bias'                   =>          'us',
     
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' what Google API Key to use.                                              */
