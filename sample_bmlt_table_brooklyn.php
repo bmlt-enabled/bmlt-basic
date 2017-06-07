@@ -22,7 +22,7 @@ require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>All Closed Meetings In Brooklyn, NY As An Interactive Table</title>
+        <title>All Meetings In Brooklyn, NY As An Interactive Table</title>
         <?php $basic_bmlt_object->output_head('[[BMLT_TABLE(meeting_key=location_city_subsection&meeting_key_value=Brooklyn)]]'); ?>
     </head>
     <body>
