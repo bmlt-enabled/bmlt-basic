@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.4.7* ** *- June 17, 2017*
+
+- Added a workaround for nonstandard SSL certs.
+
 ***Version 3.4.6* ** *- May 18, 2017*
 
 - Added support for a Region Bias.
