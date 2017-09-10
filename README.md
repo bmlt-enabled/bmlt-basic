@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.5.0* ** *- September 10, 2017*
+
+- Added the capability to have different localizations apply to different settings.
+
 ***Version 3.4.7* ** *- June 17, 2017*
 
 - Added a workaround for nonstandard SSL certs.
