@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.5.1* ** *- September 11, 2017*
+
+- There were still outstanding issues that needed to be addressed.
+
 ***Version 3.5.0* ** *- September 10, 2017*
 
 - Added the capability to have different localizations apply to different settings.

@@ -3,7 +3,7 @@
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
-*   \version 3.5.0                                                                          *
+*   \version 3.5.1                                                                          *
 *                                                                                           *
 *   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
 *   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
