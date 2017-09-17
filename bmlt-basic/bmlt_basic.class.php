@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.5.1                                                                          *
+*   \version 3.6.0                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -307,8 +307,26 @@ class bmlt_basic extends BMLTPlugin
         if ( $root_server_root )
             {
             $root_server = $root_server_root."/client_interface/xhtml/index.php";
+    
+            $additional_css = self::stripFile ( 'quicksearch.css' ) . "\n";
+        
+            $dirname = dirname ( __FILE__ ) . '/BMLT-Satellite-Base-Class/themes';
+            $dir = new DirectoryIterator ( $dirname );
+
+            foreach ( $dir as $fileinfo )
+                {
+                if ( !$fileinfo->isDot () )
+                    {
+                    $fName = $fileinfo->getFilename ();
+                    $temp = self::stripFile ( "quicksearch.css", $fName );
+                    if ( $temp )
+                        {
+                        $additional_css .= "\t$temp\n";
+                        }
+                    }
+                }
             
-            $additional_css = '.bmlt_container * {margin:0;padding:0;text-align:center }';
+            $additional_css .= '.bmlt_container * {margin:0;padding:0;text-align:center }';
             
             if ( isset ( $options['additional_css'] ) && $options['additional_css'] )
                 {
