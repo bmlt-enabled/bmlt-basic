@@ -53,6 +53,11 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.6.0* ** *- September 18, 2017*
+
+- Added the [[BMLT_QUICKSEARCH]] shortcode.
+- Optimized the styles and Javascript.
+
 ***Version 3.5.1* ** *- September 11, 2017*
 
 - There were still outstanding issues that needed to be addressed.
