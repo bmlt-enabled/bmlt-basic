@@ -222,7 +222,7 @@ class bmlt_basic extends BMLTPlugin
         {
         $this->ajax_router ( );
         $load_head = false;   // This is a throwback. It prevents the GM JS from being loaded if there is no directly specified settings ID.
-        $head_content = "<!-- Added by the BMLT plugin 3.0. --><meta http-equiv=\"X-UA-Compatible\" content=\"IE=EmulateIE7\" /><meta http-equiv=\"Content-Style-Type\" content=\"text/css\" /><meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\" />";
+        $head_content = "<!-- Added by the BMLT plugin 3.X. -->\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=EmulateIE7\" /><meta http-equiv=\"Content-Style-Type\" content=\"text/css\" /><meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\" />";
         
         $support_mobile = $this->cms_get_page_settings_id ( $in_text, true );
         
@@ -267,6 +267,8 @@ class bmlt_basic extends BMLTPlugin
         
         $root_server_root = $options['root_server'];
         
+        $head_content .= '<meta name="BMLT-Root-URI" content="'.htmlspecialchars ( $root_server_root ).'" />';
+        
         $url = $this->get_plugin_path();
         
         if ( preg_match ( '|^\[\[bmlt_table|', strtolower ( $this->my_shortcode ) ) && file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/table_styles.php' ) )
@@ -275,40 +277,11 @@ class bmlt_basic extends BMLTPlugin
             }
         else
             {
-            if ( file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/themes/'.$options['theme'].'/styles.css' ) )
-                {
-                $head_content .= '<link rel="stylesheet" type="text/css" href="';
-    
-                $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
-    
-                if ( !defined ('_DEBUG_MODE_' ) )
-                    {
-                    $head_content .= 'style_stripper.php?filename=';
-                    }
-    
-                $head_content .= 'styles.css" />';
-                }
-    
-            if ( file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/themes/'.$options['theme'].'/nouveau_map_styles.css' ) )
-                {
-                $head_content .= '<link rel="stylesheet" type="text/css" href="';
-    
-                $head_content .= htmlspecialchars ( $url.'themes/'.$options['theme'].'/' );
-    
-                if ( !defined ('_DEBUG_MODE_' ) )
-                    {
-                    $head_content .= 'style_stripper.php?filename=';
-                    }
-    
-                $head_content .= 'nouveau_map_styles.css" />';
-                }
-            }
-        
-        if ( $root_server_root )
-            {
-            $root_server = $root_server_root."/client_interface/xhtml/index.php";
-    
-            $additional_css = self::stripFile ( 'quicksearch.css' ) . "\n";
+            $head_content .= "\n".'<style type="text/css">'."\n";
+            $head_content .= self::stripFile ( 'styles.css', $options['theme'] ) . "\n";
+            $head_content .= self::stripFile ( 'nouveau_map_styles.css', $options['theme'] ) . "\n";
+            $head_content .= self::stripFile ( 'table_styles.css' ) . "\n";
+            $head_content .= self::stripFile ( 'quicksearch.css' ) . "\n";
         
             $dirname = dirname ( __FILE__ ) . '/BMLT-Satellite-Base-Class/themes';
             $dir = new DirectoryIterator ( $dirname );
@@ -318,27 +291,27 @@ class bmlt_basic extends BMLTPlugin
                 if ( !$fileinfo->isDot () )
                     {
                     $fName = $fileinfo->getFilename ();
+                    $temp = self::stripFile ( "table_styles.css", $fName );
+                    if ( $temp )
+                        {
+                        $head_content .= "\t$temp\n";
+                        }
                     $temp = self::stripFile ( "quicksearch.css", $fName );
                     if ( $temp )
                         {
-                        $additional_css .= "\t$temp\n";
+                        $head_content .= "\t$temp\n";
                         }
                     }
                 }
-            
-            $additional_css .= '.bmlt_container * {margin:0;padding:0;text-align:center }';
-            
-            if ( isset ( $options['additional_css'] ) && $options['additional_css'] )
-                {
-                $additional_css .= $options['additional_css'];
-                }
-            
-            if ( $additional_css )
-                {
-                $head_content .= '<style type="text/css">'.preg_replace ( "|\s+|", " ", $additional_css ).'</style>';
-                }
+            $head_content .= "\n</style>\n";
+            $head_content .= '<script type="text/javascript">';
+        
+            $head_content .= self::stripFile ( 'javascript.js' );
+            $head_content .= self::stripFile ( 'map_search.js' );
+            $head_content .= self::stripFile ( 'fast_mobile_lookup.js' );
+        
+            $head_content .= "\n</script>\n";
             }
-
         return $head_content;
         }
     
