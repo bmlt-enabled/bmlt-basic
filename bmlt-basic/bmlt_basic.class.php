@@ -269,51 +269,43 @@ class bmlt_basic extends BMLTPlugin
         
         $head_content .= '<meta name="BMLT-Root-URI" content="'.htmlspecialchars ( $root_server_root ).'" />';
         
-        $url = $this->get_plugin_path();
-        
-        if ( preg_match ( '|^\[\[bmlt_table|', strtolower ( $this->my_shortcode ) ) && file_exists ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/table_styles.php' ) )
-            {
-            $head_content .= '<link rel="stylesheet" type="text/css" href="'.$url.'table_styles.php?theme='.htmlspecialchars ( $options['theme'] ).'" />';
-            }
-        else
-            {
-            $head_content .= "\n".'<style type="text/css">'."\n";
-            $head_content .= self::stripFile ( 'styles.css', $options['theme'] ) . "\n";
-            $head_content .= self::stripFile ( 'nouveau_map_styles.css', $options['theme'] ) . "\n";
-            $head_content .= self::stripFile ( 'table_styles.css' ) . "\n";
-            $head_content .= self::stripFile ( 'quicksearch.css' ) . "\n";
-        
-            $dirname = dirname ( __FILE__ ) . '/BMLT-Satellite-Base-Class/themes';
-            $dir = new DirectoryIterator ( $dirname );
+        $head_content .= "\n".'<style type="text/css">'."\n";
+        $head_content .= self::stripFile ( 'styles.css', $options['theme'] ) . "\n";
+        $head_content .= self::stripFile ( 'nouveau_map_styles.css', $options['theme'] ) . "\n";
+        $head_content .= self::stripFile ( 'table_styles.css' ) . "\n";
+        $head_content .= self::stripFile ( 'quicksearch.css' ) . "\n";
+    
+        $dirname = dirname ( __FILE__ ) . '/BMLT-Satellite-Base-Class/themes';
+        $dir = new DirectoryIterator ( $dirname );
 
-            foreach ( $dir as $fileinfo )
+        foreach ( $dir as $fileinfo )
+            {
+            if ( !$fileinfo->isDot () )
                 {
-                if ( !$fileinfo->isDot () )
+                $fName = $fileinfo->getFilename ();
+                $temp = self::stripFile ( "table_styles.css", $fName );
+                if ( $temp )
                     {
-                    $fName = $fileinfo->getFilename ();
-                    $temp = self::stripFile ( "table_styles.css", $fName );
-                    if ( $temp )
-                        {
-                        $image_dir_path = $this->get_plugin_path() . '/themes/' . $fName . '/images/';
-                        $temp = str_replace ( '##-IMAGEDIR-##', $image_dir_path, $temp );
-                        $head_content .= "\t$temp\n";
-                        }
-                    $temp = self::stripFile ( "quicksearch.css", $fName );
-                    if ( $temp )
-                        {
-                        $head_content .= "\t$temp\n";
-                        }
+                    $image_dir_path = $this->get_plugin_path() . '/themes/' . $fName . '/images/';
+                    $temp = str_replace ( '##-IMAGEDIR-##', $image_dir_path, $temp );
+                    $head_content .= "\t$temp\n";
+                    }
+                $temp = self::stripFile ( "quicksearch.css", $fName );
+                if ( $temp )
+                    {
+                    $head_content .= "\t$temp\n";
                     }
                 }
-            $head_content .= "\n</style>\n";
-            $head_content .= '<script type="text/javascript">';
-        
-            $head_content .= self::stripFile ( 'javascript.js' );
-            $head_content .= self::stripFile ( 'map_search.js' );
-            $head_content .= self::stripFile ( 'fast_mobile_lookup.js' );
-        
-            $head_content .= "\n</script>\n";
             }
+        $head_content .= "\n</style>\n";
+        $head_content .= '<script type="text/javascript">';
+    
+        $head_content .= self::stripFile ( 'javascript.js' );
+        $head_content .= self::stripFile ( 'map_search.js' );
+        $head_content .= self::stripFile ( 'fast_mobile_lookup.js' );
+    
+        $head_content .= "\n</script>\n";
+
         return $head_content;
         }
     
