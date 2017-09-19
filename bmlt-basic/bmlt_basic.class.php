@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.6.0                                                                          *
+*   \version 3.6.1                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -270,8 +270,21 @@ class bmlt_basic extends BMLTPlugin
         $head_content .= '<meta name="BMLT-Root-URI" content="'.htmlspecialchars ( $root_server_root ).'" />';
         
         $head_content .= "\n".'<style type="text/css">'."\n";
-        $head_content .= self::stripFile ( 'styles.css', $options['theme'] ) . "\n";
-        $head_content .= self::stripFile ( 'nouveau_map_styles.css', $options['theme'] ) . "\n";
+        $temp = self::stripFile ( "styles.css", $options['theme'] );
+        if ( $temp )
+            {
+            $image_dir_path = $this->get_plugin_path() . '/themes/' . $options['theme'] . '/images/';
+            $temp = str_replace ( '##-IMAGEDIR-##', $image_dir_path, $temp );
+            $head_content .= "\t$temp\n";
+            }
+        $temp = self::stripFile ( "nouveau_map_styles.css", $options['theme'] );
+        if ( $temp )
+            {
+            $image_dir_path = $this->get_plugin_path() . '/themes/' . $options['theme'] . '/images/';
+            $temp = str_replace ( '##-IMAGEDIR-##', $image_dir_path, $temp );
+            $head_content .= "\t$temp\n";
+            }
+        
         $head_content .= self::stripFile ( 'table_styles.css' ) . "\n";
         $head_content .= self::stripFile ( 'quicksearch.css' ) . "\n";
     

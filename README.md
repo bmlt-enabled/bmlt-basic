@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.6.1* ** *- September 19, 2017*
+
+- Fixes a style issue, where images were not being displayed in the regular [[BMLT]] shortcode.
+
 ***Version 3.6.0* ** *- September 18, 2017*
 
 - Added the [[BMLT_QUICKSEARCH]] shortcode.
