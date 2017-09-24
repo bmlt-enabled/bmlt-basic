@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.7.0* ** *- September 24, 2017*
+
+- Added Spanish translation -FINALLY! Thanks, Costa Rica!
+
 ***Version 3.6.2* ** *- September 21, 2017*
 
 - Fixes a style issue, where the style could sometimes not be applied for the mobile shortcode.
