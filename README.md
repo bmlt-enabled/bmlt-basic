@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.7.1* ** *- September 24, 2017*
+
+- Fixes two bugs: 1) Certain non-Roman character sets could fail text match searches, and 2) result sets of no format codes could be counted as empty.
+
 ***Version 3.7.0* ** *- September 24, 2017*
 
 - Added Spanish translation -FINALLY! Thanks, Costa Rica!
