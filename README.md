@@ -53,6 +53,11 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+
+***Version 3.8.2* ** *- October 8, 2017*
+
+- The "fix" in 3.8.1 broke certain other installations. That should be fixed here.
+
 ***Version 3.8.1* ** *- October 8, 2017*
 
 - The 3.7.1 version had an anonymous function pointer that caused some LAMP servers to puke (They shouldn't). It is no longer anonymous, and that should fix it.
