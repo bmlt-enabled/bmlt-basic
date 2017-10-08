@@ -53,6 +53,11 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.8.0* ** *- October 8, 2017*
+
+- Adds support for responsiveness in the standard [[bmlt]] shortcode.
+- Adds support for an adjustable geo_width.
+
 ***Version 3.7.1* ** *- September 24, 2017*
 
 - Fixes two bugs: 1) Certain non-Roman character sets could fail text match searches, and 2) result sets of no format codes could be counted as empty.
