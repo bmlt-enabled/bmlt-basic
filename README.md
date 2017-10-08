@@ -53,6 +53,10 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+***Version 3.8.1* ** *- October 8, 2017*
+
+- The 3.7.1 version had an anonymous function pointer that caused some LAMP servers to puke (They shouldn't). It is no longer anonymous, and that should fix it.
+
 ***Version 3.8.0* ** *- October 8, 2017*
 
 - Adds support for responsiveness in the standard [[bmlt]] shortcode.
