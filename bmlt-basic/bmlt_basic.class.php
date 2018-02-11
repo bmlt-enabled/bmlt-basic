@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.9.1                                                                          *
+*   \version 3.9.2                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -313,12 +313,25 @@ class bmlt_basic extends BMLTPlugin
         $head_content .= self::stripFile ( 'responsiveness.css' ) . "\n";
         $head_content .= "\n</style>\n";
         $head_content .= '<script type="text/javascript">';
-    
+        
         $head_content .= self::stripFile ( 'javascript.js' );
-        $head_content .= self::stripFile ( 'map_search.js' );
-        $head_content .= self::stripFile ( 'fast_mobile_lookup.js' );
+
+        if ( $this->get_shortcode ( $in_text, 'bmlt_quicksearch' ) )
+            {
+            $head_content .= self::stripFile ( 'quicksearch.js' ) . (defined ( '_DEBUG_MODE_' ) ? "\n" : '');
+            }
+        
+        if ( $this->get_shortcode ( $in_text, 'bmlt_map' ) )
+            {
+            $head_content .= self::stripFile ( 'map_search.js' );
+            }
+        
+        if ( $this->get_shortcode ( $in_text, 'bmlt_mobile' ) )
+            {
+            $head_content .= self::stripFile ( 'fast_mobile_lookup.js' );
+            }
     
-        $head_content .= "\n</script>\n";
+        $head_content .= '</script>';
 
         return $head_content;
         }
