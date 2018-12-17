@@ -54,7 +54,7 @@ There are a number of sample files included with the installation. These are not
 CHANGELIST
 ----------
 
-***Version 3.9.4* ** *- UNRELEASED*
+***Version 3.9.4* ** *- December 17, 2018*
 
 - Migrated to use composer instead of submodules.
 - When creating URLs for static content, the HTTP_X_FORWARDED_PORT and HTTP_X_FORWARDED_PROTO headers are now inspected for determining the port and protocol.
