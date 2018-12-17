@@ -1,56 +1,52 @@
 language: php
-
 php:
 - '7.1'
-
 env:
   global:
   - ZIP_FILENAME=bmlt-basic-build${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip
   - S3_BUCKET=archives.bmlt.app
   - S3_KEY=bmlt-basic
-
+  - secure: a9l6BIrecxurgD34AbyodgfaBRabrbHEXOpXnVL+B22kLbLbYl+WLIxzsndLfrbh0EKrl3rczuSHSYJrskEFn5PKu0wVoUK1b7lVYWj+eNBeemUNdv3lPyRHAvb5k+Qc6GSW+M+mOgkEa9Qt1XVoqvtsRtyBHfP45dJaagvUGiaKDI1qrl2cEtNUafJEulfkD3Ofxjgoot9wsZuYYzcgvzpiuyOQ0HqQhqDcMMjFEhcI5s1jIilBAW7a2v6REafyt23ZyqTYl9dP1OjCz0KtgxczWITq9crV448xFyMCaIrcdKEkjq8Y0pd/+HUgQfg6pgA5skjveaC70qePWRZ6PnkyBbfommTnIjn0AKlvZR8T/9Qi/MQ3I0PffDQleP72gYvYX577KHnSP+3gWg9LaTYDU1Ftqq2iWeLSjuLutUQSuhLNzOGi0QERzqBj29plY5i5whYxvGWVogZxS0AyVx+YekiEnDDgDoVEDWTnfpdTOZukSGEZ1Cx9UcIMeVnWV+t51/M3aA7q5ZdSrjX6W0RwXAK4TDJAdBzPOoX5abrtkYGNsxpf5G4+U9m6vndjldcewn20B+JZnqmrNt59N53vKIXWTbMhACLlt2WU68cZmYH/9HfstMI6kBfERBNCGyhHinSnTIZqz/JnbuQkCWn0bftfY1yWWiXpu2fALLw=
 jobs:
   include:
-
-    - stage: zip file
-      env:
-        - BUILD_DIR=build
-        - DIST_DIR_S3=dist/s3
-        - DIST_DIR_GITHUB=dist/github
-        - GITHUB_RELEASE_FILENAME=bmlt-basic.zip
-      install:
-        - composer install --no-dev
-      script:
-        - cp LICENSE.txt main_server
-        - find ./ -type d | xargs chmod 755
-        - find ./ -name '*.php' | xargs chmod 644
-        - mkdir $BUILD_DIR && zip -r $BUILD_DIR/$ZIP_FILENAME ./
-      before_deploy:
-        - mkdir -p $DIST_DIR_S3 && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_S3/$ZIP_FILENAME
-        - mkdir -p $DIST_DIR_GITHUB && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME
-      deploy:
-        - provider: s3
-          access_key_id: AKIAI7JHYFA6DI3WYP5A
-          secret_access_key:
-            secure: "XXmslPjsNSisQoGp9ftbULzhnFnnwScLVXM7D/6Y2gwk3WLr/nEUX33WkWM9mWZrEkaWkPjHthBifOoX2t0sPVTvF00B3V9kdw6Y7FwCkm2soi13x64fKCiDA8Ed2bala+5uuC05sI8uGk4/4To2G67bVi0Lnhx1JDUn31EbvxvZc86F2mHfnRZyZNrmBSkOxMvWnHMspKFiOIf5KcuBrciaB5ZilYPuwJJXnQFy9srwifjA0mYOKJ6djyvP6RGWABHe8iuiKHx73m57vIRv57yOxVQ2zpiaoEu1RGZpwB+S1lqAC7TBziNk4i1aWpLide3lts8E2fARVYTSkZfnhVRarLWYNUhXBs8P93SVJkKsd/di5iVuv88mICDCA6KhVw3CtYzd5LX/1ocL1sxNOVeXeLNNADubfB9DGYcauowyUjkjmliDbfcjjXTeWgicfcEWysOMP8Zc9bXhI2+hJD2vvbZat9pCqF+Z1Px94PjQXiKzudmVnEitcO8N9fQvaljIXAF712dFKYiqkjDHNelQ3jRQk1gt+51jTCpCI0ZAclzBaOc8zjrVVqhfC9y8lEVoYdPhdroLHH34OmT4VEaxKgWb4ncDYA1+w33xXl2rlrjOvZDW0EqAhDni5jJ+wTYj5e+/7szN91wYswU0jhF2yv7jIxULXABghdmixwk="
-          bucket: $S3_BUCKET
-          local_dir: $DIST_DIR_S3
-          upload-dir: $S3_KEY
-          skip_cleanup: true
-          on:
-            all_branches: true
-        - provider: releases
-          api_key:
-            secure: "IU6COo9Q0JUZKxRp+tgps1ZSibpXy4gMonko0FyMwSF1GNP6JJit7JAPulK+ccl5k4y+16a5w/ho/EwGc+PI5py5SLk5+KzfJgS3YaWRptvLuX886M5egmNtgvE0SfkaQkfMipgzDc8FFENHaIFKSIDkiMNr5IKGoAz32qqr5sYHFBX5BmTBfa+sjPuZm1REri9ft2vR5zF1IZlD8BvCiMt4GD8+zYS26CiAEZjuh8tZNC/esamqunGGiu+z8Pn2vMqR3A6qwOD1GjFHXrjLB0osei6BiCQJDtzyz9ZpPCBYyDujUkDjSx7ap6PDAJZNOC1Cw78leGMW8oDEZK6iv/QRuF5EDvD986xZtJMB7tLAdDUS2NhgTeJVm4s9JJU11LO/p30PiWeYFIETxHvKOt9k+05VOV79uJKITxG6ifNrionGD2+eY0h6YnjBDb5Gg8AjFIfZ4y1xsmm5UlnEhfL2yEc0rjoWXL1Q4VtoVrZ4nwPkauC/DokuwKoslCUQ0H3G1d7y3ookmSUCV7Jfaid/Puvxmfe2TyPgVQMnQOfJbHxpn5kR5LhmAmNUaKc8Wi/72u0VNwsaLeiYcTTRu7YRe6BwUFg/S0QIdbbrhw4qtkj2xKYrknMNye3vBJLP/e7+Fq07bYYJlLlA0RQYcSqVKi6Z8E9so5dKs0KWKnw="
-          file: $DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME
-          skip_cleanup: true
-          name: $TRAVIS_TAG
-          on:
-            tags: true
-
+  - stage: zip file
+    env:
+    - BUILD_DIR=build
+    - DIST_DIR_S3=dist/s3
+    - DIST_DIR_GITHUB=dist/github
+    - GITHUB_RELEASE_FILENAME=bmlt-basic.zip
+    install:
+    - composer install --no-dev
+    script:
+    - cp LICENSE.txt main_server
+    - find ./ -type d | xargs chmod 755
+    - find ./ -name '*.php' | xargs chmod 644
+    - mkdir $BUILD_DIR && zip -r $BUILD_DIR/$ZIP_FILENAME ./
+    before_deploy:
+    - mkdir -p $DIST_DIR_S3 && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_S3/$ZIP_FILENAME
+    - mkdir -p $DIST_DIR_GITHUB && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME
+    deploy:
+    - provider: s3
+      access_key_id: AKIAI7JHYFA6DI3WYP5A
+      secret_access_key:
+        secure: cvzVwqEjXTIS8uEFvR/Zdlb3I48snxj+LV7A2Gd/rFFRbfVl061xDssmpL5xbemon8p3ngNUpzMAC7CGZt0kxP2PICM5IZ75x3Ep67xQHVg7xAmANzfjPC+GN6vrvHWR2hVDRfIJ9s2KTQY7ymx3u9TbOplp2NkYyEEHQO+ZAogPaaA9VZLO9Xv82NQXyfV7mwPuMJknyTsi4gKeUKntXqIEwAWxm7C5sG6t84fqy1KQHBPkOSaRO8lkKesDrUJWRWetZ7Qgc03wMUA5jlN0LlFloXMoqN2yo4COJ5RnADS8vmhOHOr8AFgUz6x1QB2N4/P3MODPuzAz1mKUeIxGwBX+19Fm4CZYJXFLzaVbSvQZXfBU3Sw0YwPiBBrvQYaaILiKyBQTe4szsgE0hInRrFSPctODvHUbyP1bTEKMnpwQR1CkUSIBfrUDfdBA53FwF/n7NzIkx2KQg5MTddrhHggcE4i4UzGdcRme97GHJVt/TCmAQiVZtgiCjXUOiPCLkugKnMjp2xo3jd6QbU6Jt2VBfQ6rrh/jSnYLM9wLhmAti2YaW7qehpNU/fienOALmQYbUB5C4oo1avQGXony5KhB8K4Agweo981DsHb+o6CPYzQbGfBcHWPgROpvEhoJDgYs4nxclRTwMxsBQyuVGagkwCZnGyMe6Yg2JAvyYxM=
+      bucket: "$S3_BUCKET"
+      local_dir: "$DIST_DIR_S3"
+      upload-dir: "$S3_KEY"
+      skip_cleanup: true
+      on:
+        all_branches: true
+    - provider: releases
+      api_key:
+        secure: IU6COo9Q0JUZKxRp+tgps1ZSibpXy4gMonko0FyMwSF1GNP6JJit7JAPulK+ccl5k4y+16a5w/ho/EwGc+PI5py5SLk5+KzfJgS3YaWRptvLuX886M5egmNtgvE0SfkaQkfMipgzDc8FFENHaIFKSIDkiMNr5IKGoAz32qqr5sYHFBX5BmTBfa+sjPuZm1REri9ft2vR5zF1IZlD8BvCiMt4GD8+zYS26CiAEZjuh8tZNC/esamqunGGiu+z8Pn2vMqR3A6qwOD1GjFHXrjLB0osei6BiCQJDtzyz9ZpPCBYyDujUkDjSx7ap6PDAJZNOC1Cw78leGMW8oDEZK6iv/QRuF5EDvD986xZtJMB7tLAdDUS2NhgTeJVm4s9JJU11LO/p30PiWeYFIETxHvKOt9k+05VOV79uJKITxG6ifNrionGD2+eY0h6YnjBDb5Gg8AjFIfZ4y1xsmm5UlnEhfL2yEc0rjoWXL1Q4VtoVrZ4nwPkauC/DokuwKoslCUQ0H3G1d7y3ookmSUCV7Jfaid/Puvxmfe2TyPgVQMnQOfJbHxpn5kR5LhmAmNUaKc8Wi/72u0VNwsaLeiYcTTRu7YRe6BwUFg/S0QIdbbrhw4qtkj2xKYrknMNye3vBJLP/e7+Fq07bYYJlLlA0RQYcSqVKi6Z8E9so5dKs0KWKnw=
+      file: "$DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME"
+      skip_cleanup: true
+      name: "$TRAVIS_TAG"
+      on:
+        tags: true
 notifications:
   slack:
     rooms:
-    - secure: "bmoIugz9sorNakDw7LnfC3iB7a4CnhuZeZBAVxefSoqipbZAGLoA86pSaDwSK3kNsCRAUXyHJ0pBxxJuCO5jrQKhl9TNBFQQ60KPvn3LQj9OXXTSHp4qoqBytipQGyjeqySu4fJt8Lc0u8FQ0qinxn21qF7K7c54aygVKQd+nxf/+9rVzSOJIY+c6UEBb9FwKfHl9cOJy8nTHYPNl0ZbQaYVS1gvyOV2jzrlurOXb0t2xYs2W9EOAjUd2E4ZVaD8EEyRZ9zcvy8ne41qZGBLMJjHZo6TdN4x0AdEYiITst5fKj+YILNCaVQMyURu5h65RPVXyjZ/eIOUixSt1EOpMTxWcRiDn3H7B2F7eEUIXyo/c5x1AEWEQFLGK+/PEqWx/zaBG0rJJdzVbLaqet2kg5piy+f84EBCZiXm7CZIYPMSjLJo9AJDcY9iSRgvpRnkSagHZAgMILNut53aNPd8i3FoOeycPwux/KDQpSz0uIpn4xu26VY0bzxJ8N27VugUhmNhLCN05Hgw8GoDjEoh4EgPPsdNVzXT4mzpjx2GfhRZOm/78LUSDB/w3oIAEPzRFfhberBAo0l2w9T5+Ynbw9yyquYgNUOW/nMhbwqOPbWqndHa8Xume0DXp2COHEqoSZx4gDIIRRKjKdsrFjjasWB5K7IQXQfBoiGAL7EscNA="
+    - secure: bmoIugz9sorNakDw7LnfC3iB7a4CnhuZeZBAVxefSoqipbZAGLoA86pSaDwSK3kNsCRAUXyHJ0pBxxJuCO5jrQKhl9TNBFQQ60KPvn3LQj9OXXTSHp4qoqBytipQGyjeqySu4fJt8Lc0u8FQ0qinxn21qF7K7c54aygVKQd+nxf/+9rVzSOJIY+c6UEBb9FwKfHl9cOJy8nTHYPNl0ZbQaYVS1gvyOV2jzrlurOXb0t2xYs2W9EOAjUd2E4ZVaD8EEyRZ9zcvy8ne41qZGBLMJjHZo6TdN4x0AdEYiITst5fKj+YILNCaVQMyURu5h65RPVXyjZ/eIOUixSt1EOpMTxWcRiDn3H7B2F7eEUIXyo/c5x1AEWEQFLGK+/PEqWx/zaBG0rJJdzVbLaqet2kg5piy+f84EBCZiXm7CZIYPMSjLJo9AJDcY9iSRgvpRnkSagHZAgMILNut53aNPd8i3FoOeycPwux/KDQpSz0uIpn4xu26VY0bzxJ8N27VugUhmNhLCN05Hgw8GoDjEoh4EgPPsdNVzXT4mzpjx2GfhRZOm/78LUSDB/w3oIAEPzRFfhberBAo0l2w9T5+Ynbw9yyquYgNUOW/nMhbwqOPbWqndHa8Xume0DXp2COHEqoSZx4gDIIRRKjKdsrFjjasWB5K7IQXQfBoiGAL7EscNA=
     on_success: change
   email: false
