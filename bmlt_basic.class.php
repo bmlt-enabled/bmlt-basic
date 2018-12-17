@@ -34,7 +34,7 @@ ob_start();
 // define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
 // Include our configuration.
-require_once ( dirname ( __FILE__ ).'/../config-bmlt-basic.inc.php' );
+require_once ( dirname ( __FILE__ ).'/config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
 define('ROOTPATH', __DIR__);
 require_once ( ROOTPATH .'/vendor/bmlt/bmlt-satellite-base-class/bmlt-cms-satellite-plugin.php' );
@@ -117,7 +117,7 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_plugin_path()
         {
-        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/bmlt-basic/vendor/bmlt/bmlt-satellite-base-class/';
+        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/vendor/bmlt/bmlt-satellite-base-class/';
     
         return $ret;
         }
