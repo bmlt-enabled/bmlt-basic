@@ -17,6 +17,7 @@ jobs:
     install:
     - composer install --no-dev
     script:
+    - rm -rf .*
     - find ./ -type d | xargs chmod 755
     - find ./ -name '*.php' | xargs chmod 644
     - zip -r $ZIP_FILENAME ./ && mkdir $BUILD_DIR && mv $ZIP_FILENAME $BUILD_DIR/
