@@ -6,7 +6,6 @@ env:
   - ZIP_FILENAME=bmlt-basic-build${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip
   - S3_BUCKET=archives.bmlt.app
   - S3_KEY=bmlt-basic
-  - secure: a9l6BIrecxurgD34AbyodgfaBRabrbHEXOpXnVL+B22kLbLbYl+WLIxzsndLfrbh0EKrl3rczuSHSYJrskEFn5PKu0wVoUK1b7lVYWj+eNBeemUNdv3lPyRHAvb5k+Qc6GSW+M+mOgkEa9Qt1XVoqvtsRtyBHfP45dJaagvUGiaKDI1qrl2cEtNUafJEulfkD3Ofxjgoot9wsZuYYzcgvzpiuyOQ0HqQhqDcMMjFEhcI5s1jIilBAW7a2v6REafyt23ZyqTYl9dP1OjCz0KtgxczWITq9crV448xFyMCaIrcdKEkjq8Y0pd/+HUgQfg6pgA5skjveaC70qePWRZ6PnkyBbfommTnIjn0AKlvZR8T/9Qi/MQ3I0PffDQleP72gYvYX577KHnSP+3gWg9LaTYDU1Ftqq2iWeLSjuLutUQSuhLNzOGi0QERzqBj29plY5i5whYxvGWVogZxS0AyVx+YekiEnDDgDoVEDWTnfpdTOZukSGEZ1Cx9UcIMeVnWV+t51/M3aA7q5ZdSrjX6W0RwXAK4TDJAdBzPOoX5abrtkYGNsxpf5G4+U9m6vndjldcewn20B+JZnqmrNt59N53vKIXWTbMhACLlt2WU68cZmYH/9HfstMI6kBfERBNCGyhHinSnTIZqz/JnbuQkCWn0bftfY1yWWiXpu2fALLw=
 jobs:
   include:
   - stage: zip file
