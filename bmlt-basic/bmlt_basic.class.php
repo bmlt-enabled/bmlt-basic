@@ -117,7 +117,7 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_plugin_path()
         {
-        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/vendor/bmlt/bmlt-satellite-base-class/';
+        $ret = isset ( $this->my_http_vars['base_url'] ) ? $this->my_http_vars['base_url'] : dirname( $this->get_ajax_base_uri() ).'/bmlt-basic/vendor/bmlt/bmlt-satellite-base-class/';
     
         return $ret;
         }
@@ -307,7 +307,7 @@ class bmlt_basic extends BMLTPlugin
         $head_content .= self::stripFile ( 'table_styles.css' ) . "\n";
         $head_content .= self::stripFile ( 'quicksearch.css' ) . "\n";
 
-        $dirname = ROOTPATH . '/vendor/bmlt/bmlt-satellite-base-class/themes';
+        $dirname = ROOTPATH . '/bmlt-basic/vendor/bmlt/bmlt-satellite-base-class/themes';
         $dir = new DirectoryIterator ( $dirname );
 
         foreach ( $dir as $fileinfo )
