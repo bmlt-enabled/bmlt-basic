@@ -37,7 +37,7 @@ ob_start();
 require_once ( dirname ( __FILE__ ).'/../config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
 define('ROOTPATH', __DIR__);
-require_once ( ROOTPATH .'/vendor/bmlt/bmlt-satellite-base-class/bmlt-cms-satellite-plugin.php' );
+require_once ( ROOTPATH .'/../vendor/bmlt/bmlt-satellite-base-class/bmlt-cms-satellite-plugin.php' );
 
 /****************************************************************************************//**
 *   \class bmlt_basic                                                                       *
