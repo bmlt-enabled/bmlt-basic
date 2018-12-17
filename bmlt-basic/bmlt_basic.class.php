@@ -307,7 +307,7 @@ class bmlt_basic extends BMLTPlugin
         $head_content .= self::stripFile ( 'table_styles.css' ) . "\n";
         $head_content .= self::stripFile ( 'quicksearch.css' ) . "\n";
 
-        $dirname = ROOTPATH . '/bmlt-basic/vendor/bmlt/bmlt-satellite-base-class/themes';
+        $dirname = ROOTPATH . '/vendor/bmlt/bmlt-satellite-base-class/themes';
         $dir = new DirectoryIterator ( $dirname );
 
         foreach ( $dir as $fileinfo )
