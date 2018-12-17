@@ -18,7 +18,7 @@ jobs:
     - composer install --no-dev
     script:
     - mkdir bmlt-basic/bmlt-basic
-    - mv bmlt-basic bmlt-basic
+    - mv bmlt-basic bmlt-basic/bmlt-basic
     - cp *.php bmlt-basic
     - cp LICENSE.txt bmlt-basic
     - cp README.md bmlt-basic
