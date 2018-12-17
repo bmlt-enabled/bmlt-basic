@@ -17,7 +17,6 @@ jobs:
     install:
     - composer install --no-dev
     script:
-    - cp LICENSE.txt main_server
     - find ./ -type d | xargs chmod 755
     - find ./ -name '*.php' | xargs chmod 644
     - mkdir $BUILD_DIR && zip -r $BUILD_DIR/$ZIP_FILENAME ./
