@@ -19,7 +19,6 @@ jobs:
     script:
     - mkdir bmlt-basic
     - mv vendor bmlt-basic
-    - mv samples bmlt-basic
     - cp *.php bmlt-basic
     - cp LICENSE.txt bmlt-basic
     - cp README.md bmlt-basic
