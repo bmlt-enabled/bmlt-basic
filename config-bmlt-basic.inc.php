@@ -73,7 +73,7 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
     /** The URL to put in here is displayed at the top of the root server main screen. Copy that, and add it here.                                          */
     /********************************************************************************************************************************************************/
     
-    'root_server'                   =>          'https://bmlt.app/stable/main_server',
+    'root_server'                   =>          'https://bmlt.magshare.net/stable/main_server',
     
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes where to set the map when the satellite is initialized.       */
