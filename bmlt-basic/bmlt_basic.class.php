@@ -34,7 +34,7 @@ ob_start();
 // define ( '_DEBUG_MODE_', 1 ); //Uncomment for easier JavaScript debugging.
 
 // Include our configuration.
-require_once ( dirname ( __FILE__ ).'/config-bmlt-basic.inc.php' );
+require_once ( dirname ( __FILE__ ).'/../config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
 define('ROOTPATH', __DIR__);
 require_once ( ROOTPATH .'/vendor/bmlt/bmlt-satellite-base-class/bmlt-cms-satellite-plugin.php' );
