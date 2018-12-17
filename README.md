@@ -11,11 +11,11 @@ system.
 REQUIREMENTS
 ------------
 
-The project requires a functioning [BMLT root server](http://bmlt.magshare.net/root-server).
+The project requires a functioning [BMLT root server](http://bmlt.app/root-server).
 It does not implement a root server, but connects to an existing one.
-It requires a Web server capable of executing PHP 5.0 or above.
+It requires a Web server capable of executing PHP 5.6 or above.
 
-This class uses the BMLT Satellite Base Class, which is available on [BitBucket, here](https://bitbucket.org/bmlt/bmlt-satellite-base-class).
+This class uses the BMLT Satellite Base Class, which is available on [GitHub, here](http://github.com/bmlt-enabled/bmlt-satellite-base-class/).
 
 
 INSTALLATION
@@ -53,6 +53,11 @@ There are a number of sample files included with the installation. These are not
 
 CHANGELIST
 ----------
+
+***Version 3.9.4* ** *- December 17, 2018*
+
+- Migrated to use composer instead of submodules.
+- When creating URLs for static content, the HTTP_X_FORWARDED_PORT and HTTP_X_FORWARDED_PROTO headers are now inspected for determining the port and protocol.
 
 ***Version 3.9.3* ** *- July 31, 2018*
 
