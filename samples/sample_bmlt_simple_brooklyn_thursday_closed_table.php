@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************************************
-* This is a demonstration of using the '[[bmlt_table()]]' shortcode, with parameters that           *
+* This is a demonstration of using the '[[bmlt_simple()]]' shortcode, with parameters that          *
 * ask the root server to return all closed meetings on Thursdays, in the borough of Brooklyn, NY.   *
 * This one asks that the results be arranged in a <table> element.                                  *
 *                                                                                                   *
@@ -16,14 +16,14 @@
 *               http://bmlt.magshare.net/export-calling-syntax                                      *
 ****************************************************************************************************/
 
-require_once ( dirname ( __FILE__ ).'/bmlt_basic.class.php' );
+require_once ( dirname ( __FILE__ ).'/../bmlt_basic.class.php' );
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>All Suffolk ASC Meetings As An Interactive Table</title>
-        <?php $basic_bmlt_object->output_head('[[BMLT_TABLE(services=1001)]]'); ?>
+        <title>All Closed Meetings In Brooklyn, NY, on Thursday, Displayed in a &lt;table&gt;</title>
+        <?php $basic_bmlt_object->output_head('[[BMLT_SIMPLE(switcher=GetSearchResults&formats[]=4&sort_key=time&meeting_key=location_city_subsection&meeting_key_value=Brooklyn&weekdays[]=5)]]'); ?>
     </head>
     <body>
         <?php $basic_bmlt_object->output_body(); ?>
