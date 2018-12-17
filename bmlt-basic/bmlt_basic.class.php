@@ -3,7 +3,7 @@
 *   \file   bmlt_basic.class.php                                                            *
 *                                                                                           *
 *   \brief  This is a standalone implementation of a BMLT satellite client.                 *
-*   \version 3.9.3                                                                          *
+*   \version 3.9.4                                                                          *
 *                                                                                           *
 *   In order to use this class, you need to take this entire directory and its contents,    *
 *   and place it at the same level of the file that you wish to use as your implementation. *
@@ -13,7 +13,7 @@
 *                                                                                           *
 *   This file is part of the Basic Meeting List Toolbox (BMLT).                             *
 *                                                                                           *
-*   Find out more at: http://bmlt.magshare.org                                              *
+*   Find out more at: http://bmlt.app                                              *
 *                                                                                           *
 *   BMLT is free software: you can redistribute it and/or modify                            *
 *   it under the terms of the GNU General Public License as published by                    *
@@ -36,7 +36,8 @@ ob_start();
 // Include our configuration.
 require_once ( dirname ( __FILE__ ).'/../config-bmlt-basic.inc.php' );
 // Include the satellite driver class.
-require_once ( dirname ( __FILE__ ).'/BMLT-Satellite-Base-Class/bmlt-cms-satellite-plugin.php' );
+define('ROOTPATH', __DIR__);
+require_once ( ROOTPATH .'/vendor/bmlt/bmlt-satellite-base-class/bmlt-cms-satellite-plugin.php' );
 
 /****************************************************************************************//**
 *   \class bmlt_basic                                                                       *
@@ -81,9 +82,27 @@ class bmlt_basic extends BMLTPlugin
     ****************************************************************************************/
     protected function get_ajax_base_uri()
         {
-        $port = $_SERVER['SERVER_PORT'] ;
-        // IIS puts "off" in the HTTPS field, so we need to test for that.
-        $https = (!empty ( $_SERVER['HTTPS'] ) && (($_SERVER['HTTPS'] !== 'off') || ($port == 443))); 
+        // We try to account for SSL and unusual TCP ports.
+        $port = null;
+        $https = false;
+        $from_proxy = array_key_exists("HTTP_X_FORWARDED_PROTO", $_SERVER);
+        if ($from_proxy) {
+            // If the port is specified in the header, use it. If not, default to 80
+            // for http and 443 for https. We can't trust what's in $_SERVER['SERVER_PORT']
+            // because something in front of the server is fielding the request.
+            $https = $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https';
+            if (array_key_exists("HTTP_X_FORWARDED_PORT", $_SERVER)) {
+                $port = intval($_SERVER['HTTP_X_FORWARDED_PORT']);
+            } elseif ($https) {
+                $port = 443;
+            } else {
+                $port = 80;
+            }
+        } else {
+            $port = $_SERVER['SERVER_PORT'];
+            // IIS puts "off" in the HTTPS field, so we need to test for that.
+            $https = (!empty ($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] !== 'off') || ($port == 443)));
+        }
         $server_path = $_SERVER['SERVER_NAME'];
         $my_path = $_SERVER['PHP_SELF'];
         $server_path .= trim ( (($https && ($port != 443)) || (!$https && ($port != 80))) ? ':'.$port : '', '/' );

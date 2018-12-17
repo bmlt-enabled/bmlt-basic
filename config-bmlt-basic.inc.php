@@ -3,14 +3,14 @@
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
-*   \version 3.9.3                                                                          *
+*   \version 3.9.4                                                                          *
 *                                                                                           *
 *   This file comes with the sample set for the Greater New York Region BMLT Server, which  *
 *   is run by the same people that designed the BMLT, so it can be considered "Home Field." *
 *                                                                                           *
 *   This file is part of the Basic Meeting List Toolbox (BMLT).                             *
 *                                                                                           *
-*   Find out more at: http://bmlt.magshare.org                                              *
+*   Find out more at: http://bmlt.app                                                       *
 *                                                                                           *
 *   BMLT is free software: you can redistribute it and/or modify                            *
 *   it under the terms of the GNU General Public License as published by                    *
@@ -73,7 +73,7 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
     /** The URL to put in here is displayed at the top of the root server main screen. Copy that, and add it here.                                          */
     /********************************************************************************************************************************************************/
     
-    'root_server'                   =>          'https://bmlt.magshare.net/stable/main_server', 
+    'root_server'                   =>          'https://bmlt.app/stable/main_server',
     
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes where to set the map when the satellite is initialized.       */
