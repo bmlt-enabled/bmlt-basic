@@ -29,7 +29,7 @@
 * PHP section. This will create a variable, called "$basic_bmlt_object", which will hold    *
 * an instance of our class.                                                                 *
 ********************************************************************************************/
-require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
+require_once(dirname(__FILE__).'/bmlt-basic/bmlt_basic.class.php');
 
 /********************************************************************************************
 * If you want to support mobile devices with the simple BMLT mobile handler, then you will  *
@@ -46,7 +46,7 @@ require_once ( dirname ( __FILE__ ).'/bmlt-basic/bmlt_basic.class.php' );
 * point. You will never see the PHP in your actual page output.                             *
 ********************************************************************************************/
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
