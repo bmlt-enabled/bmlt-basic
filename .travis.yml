@@ -12,4 +12,44 @@ jobs:
     script:
     - find . -name "*.php" ! -path '*/vendor/*' -print0 | xargs -0 -n1 -P8 php -l
     - bmlt-basic/vendor/squizlabs/php_codesniffer/bin/phpcs --warning-severity=6 --standard=PSR2 --ignore=vendor --extensions=php --report=summary ./
+  - stage: zip file
+    env:
+    - BUILD_DIR=build
+    - DIST_DIR_S3=dist/s3
+    - DIST_DIR_GITHUB=dist/github
+    - GITHUB_RELEASE_FILENAME=bmlt-basic.zip
+    install:
+    - composer install
+    script:
+    - find ./ -type d | xargs chmod 755
+    - find ./ -name '*.php' | xargs chmod 644
+    - zip -r $ZIP_FILENAME ./ -x "*.git*" -x "*.editorconfig*" -x "*.travis.yml*" -x "*doc*" -x "composer.*" && mkdir $BUILD_DIR && mv $ZIP_FILENAME $BUILD_DIR/
+    before_deploy:
+    - mkdir -p $DIST_DIR_S3 && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_S3/$ZIP_FILENAME
+    - mkdir -p $DIST_DIR_GITHUB && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME
+    deploy:
+    - provider: s3
+      access_key_id: AKIAI7JHYFA6DI3WYP5A
+      secret_access_key:
+        secure: cvzVwqEjXTIS8uEFvR/Zdlb3I48snxj+LV7A2Gd/rFFRbfVl061xDssmpL5xbemon8p3ngNUpzMAC7CGZt0kxP2PICM5IZ75x3Ep67xQHVg7xAmANzfjPC+GN6vrvHWR2hVDRfIJ9s2KTQY7ymx3u9TbOplp2NkYyEEHQO+ZAogPaaA9VZLO9Xv82NQXyfV7mwPuMJknyTsi4gKeUKntXqIEwAWxm7C5sG6t84fqy1KQHBPkOSaRO8lkKesDrUJWRWetZ7Qgc03wMUA5jlN0LlFloXMoqN2yo4COJ5RnADS8vmhOHOr8AFgUz6x1QB2N4/P3MODPuzAz1mKUeIxGwBX+19Fm4CZYJXFLzaVbSvQZXfBU3Sw0YwPiBBrvQYaaILiKyBQTe4szsgE0hInRrFSPctODvHUbyP1bTEKMnpwQR1CkUSIBfrUDfdBA53FwF/n7NzIkx2KQg5MTddrhHggcE4i4UzGdcRme97GHJVt/TCmAQiVZtgiCjXUOiPCLkugKnMjp2xo3jd6QbU6Jt2VBfQ6rrh/jSnYLM9wLhmAti2YaW7qehpNU/fienOALmQYbUB5C4oo1avQGXony5KhB8K4Agweo981DsHb+o6CPYzQbGfBcHWPgROpvEhoJDgYs4nxclRTwMxsBQyuVGagkwCZnGyMe6Yg2JAvyYxM=
+      bucket: "$S3_BUCKET"
+      local_dir: "$DIST_DIR_S3"
+      upload-dir: "$S3_KEY"
+      skip_cleanup: true
+      on:
+        all_branches: true
+    - provider: releases
+      api_key:
+        secure: HwYdxLMnfREm3LHytbTswgsT61UKI0HpakWkp3JE0owGjA4usVbqYnUOsycplDSvC8kzWOXXJkvimDh6MHhjtVgCteZ5tTIioQrWJo/0X8NXx32UScTMF5tXZHQX9KS201UeopfZvlyMXoOdcm+m7/iGTYrfVwbWnVnjpDGtvJdes09uJUIOCvEUjfUbIpUtlXNpnFc4DuXhkJvIG8XqGu9uQt2k8GtruV1YTR2CRrCaVPzRNBaEAP6lN+pHWy8j9af9PzxWZ9GrGTh/Cwuegp2tuq6gZPSWfqEdN/JzHmlRwy8+4JchYWUNKLZsT6x4QH8h1Kzi/vHveIxtzOvFXa/oTZKBGVqhJk1FdZ9rgIUsFPWS4OPQv3pCbng3LJhazHjEgi9EPk9aIcIZzPIKAGCooHdHLfnNJt3NT+xGz6nkoEXHqAuvCsEQLq9RUEQ+XNP7iK/D8QpJ7A2sBAx7M6H8sImnxMHVPZF/RGATjhzbgnn6WgOOsEi6rsrquBDDL3A8BhXKCtsBcF6jVwKWUDfsi2ZRnmmmDJmbwNPztwrtG18RbWy+UO9sHxO9UXPgjRXwbR5B44iT58wvJKxVgt8uFfSlIdWqFtRSNDePjd15IFGVASWbMRS7abA7ZnrZErmxswpO5Eg0IwygQ4wWpxdrf1eRTXXY8s1EGx8wU1A=
+      file: "$DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME"
+      skip_cleanup: true
+      name: "$TRAVIS_TAG"
+      on:
+        tags: true
+notifications:
+  slack:
+    rooms:
+    - secure: bmoIugz9sorNakDw7LnfC3iB7a4CnhuZeZBAVxefSoqipbZAGLoA86pSaDwSK3kNsCRAUXyHJ0pBxxJuCO5jrQKhl9TNBFQQ60KPvn3LQj9OXXTSHp4qoqBytipQGyjeqySu4fJt8Lc0u8FQ0qinxn21qF7K7c54aygVKQd+nxf/+9rVzSOJIY+c6UEBb9FwKfHl9cOJy8nTHYPNl0ZbQaYVS1gvyOV2jzrlurOXb0t2xYs2W9EOAjUd2E4ZVaD8EEyRZ9zcvy8ne41qZGBLMJjHZo6TdN4x0AdEYiITst5fKj+YILNCaVQMyURu5h65RPVXyjZ/eIOUixSt1EOpMTxWcRiDn3H7B2F7eEUIXyo/c5x1AEWEQFLGK+/PEqWx/zaBG0rJJdzVbLaqet2kg5piy+f84EBCZiXm7CZIYPMSjLJo9AJDcY9iSRgvpRnkSagHZAgMILNut53aNPd8i3FoOeycPwux/KDQpSz0uIpn4xu26VY0bzxJ8N27VugUhmNhLCN05Hgw8GoDjEoh4EgPPsdNVzXT4mzpjx2GfhRZOm/78LUSDB/w3oIAEPzRFfhberBAo0l2w9T5+Ynbw9yyquYgNUOW/nMhbwqOPbWqndHa8Xume0DXp2COHEqoSZx4gDIIRRKjKdsrFjjasWB5K7IQXQfBoiGAL7EscNA=
+    on_success: change
+  email: false
 
