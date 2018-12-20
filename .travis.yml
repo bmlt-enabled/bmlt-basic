@@ -8,6 +8,7 @@ env:
   - S3_KEY=bmlt-basic
 jobs:
   include:
+  
   - stage: lint
   install:
   - composer install
