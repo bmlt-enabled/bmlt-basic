@@ -11,11 +11,11 @@ jobs:
   
   - stage: lint
   install:
-  - composer install --no-dev
+  - composer install
   script:
   - find . -name "*.php" ! -path '*/vendor/*' -print0 | xargs -0 -n1 -P8 php -l
-  - vendor/squizlabs/php_codesniffer/bin/phpcs --warning-severity=6 --standard=PSR2 --ignore=vendor --extensions=php --report=summary ./
-  
+  - bmlt-basic/vendor/squizlabs/php_codesniffer/bin/phpcs --warning-severity=6 --standard=PSR2 --ignore=vendor --extensions=php --report=summary ./
+
   - stage: zip file
     env:
     - BUILD_DIR=build
@@ -23,7 +23,7 @@ jobs:
     - DIST_DIR_GITHUB=dist/github
     - GITHUB_RELEASE_FILENAME=bmlt-basic.zip
     install:
-    - composer install --no-dev
+    - composer install
     script:
     - find ./ -type d | xargs chmod 755
     - find ./ -name '*.php' | xargs chmod 644
