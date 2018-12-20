@@ -2,7 +2,11 @@ language: php
 
 php:
 - '7.1'
-
+env:
+  global:
+  - ZIP_FILENAME=bmlt-basic-build${TRAVIS_BUILD_NUMBER}-${TRAVIS_COMMIT}.zip
+  - S3_BUCKET=archives.bmlt.app
+  - S3_KEY=bmlt-basic
 jobs:
   include:
 
