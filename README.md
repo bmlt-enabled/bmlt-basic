@@ -54,6 +54,12 @@ There are a number of sample files included with the installation. These are not
 CHANGELIST
 ----------
 
+***Version 3.9.5* ** *- December 20, 2018*
+
+- Fix for the BMLT_CHANGES shortcode.
+- WML 1.1 fix for BMLT_MOBILE shortcode.
+- ROOTPATH must ALWAYS be defined, but if its not we must account for that properly.
+
 ***Version 3.9.4* ** *- December 17, 2018*
 
 - Migrated to use composer instead of submodules.
