@@ -54,6 +54,9 @@ There are a number of sample files included with the installation. These are not
 CHANGELIST
 ----------
 
+***Version 3.11.0* ** *- October 12, 2023*
+- Updated dependencies to work with BMLT Root Server 3.x.
+
 ***Version 3.10.0* ** *- September 22, 2019*
 - Added the "Australia" theme.
 - Added location_info field to [[bmlt_table]] and [[bmlt_quicksearch]] shortcodes.

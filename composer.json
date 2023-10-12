@@ -7,13 +7,15 @@
     "name": "littlegreenviper"
   },{
     "name": "radius314"
+  },{
+    "name": "pjaudiomv"
   }],
   "config": {
     "vendor-dir": "bmlt-basic/vendor"
   },
   "require": {
-    "bmlt/bmlt-satellite-base-class": "^3.10",
-    "bmlt/bmlt-satellite-driver": "1.0.19"
+    "bmlt/bmlt-satellite-base-class": "^3.11.4",
+    "bmlt/bmlt-satellite-driver": "1.1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*"

@@ -1,5 +1,8 @@
 <?php
-/****************************************************************************************//**
+
+/****************************************************************************************/
+
+/**
 *   \file   config-bmlt-basic.inc.php                                                       *
 *                                                                                           *
 *   \brief  This file contains the basic configuration directives for the standalone client.*
@@ -72,34 +75,34 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
     /** This affects all shortcodes.                                                                                                                        */
     /** The URL to put in here is displayed at the top of the root server main screen. Copy that, and add it here.                                          */
     /********************************************************************************************************************************************************/
-    
+
     'root_server'                   =>          'https://bmlt.magshare.net/stable/main_server',
-    
+
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes where to set the map when the satellite is initialized.       */
     /********************************************************************************************************************************************************/
-    
+
     'map_center_latitude'           =>          40.780281,
     'map_center_longitude'          =>          -73.965497,
     'map_zoom'                      =>          12,
-    
+
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' what Geographic Region to assume as a search area.                       */
     /********************************************************************************************************************************************************/
 
     'region_bias'                   =>          'us',
-    
+
     /********************************************************************************************************************************************************/
     /** This tells the map in the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' what Google API Key to use.                                              */
     /********************************************************************************************************************************************************/
 
     'google_api_key'                =>          '',
-    
+
     /********************************************************************************************************************************************************/
     /** This controls which view is displayed when the satellite first shows up. This only affects the '[[BMLT]]' shortcode.                                */
     /** Can be 'map', 'text', 'advanced_map' or 'advanced_text'                                                                                             */
     /********************************************************************************************************************************************************/
-    
+
     'bmlt_initial_view'             =>          'map',
 
     /********************************************************************************************************************************************************/
@@ -107,36 +110,36 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
     /** The '[[BMLT_MAP]]' and '[[BMLT_MOBILE]]' displays also shows distances, and this affects the units used for those.                                  */
     /** Can be 'mi' or 'km'.                                                                                                                                */
     /********************************************************************************************************************************************************/
-    
+
     'distance_units'                =>          'mi',
-    
+
     /********************************************************************************************************************************************************/
     /** These affect how a couple of basic services appear. The first one is the "location" checkbox. The other controls the three "quick search" buttons.  */
     /** These only affect the '[[BMLT]]' shortcode.                                                                                                         */
     /********************************************************************************************************************************************************/
-    
+
     'bmlt_location_checked'         =>          0,  /* Set this to 1 if you want the "This is a Location or Postcode" box to be checked on by default.      */
     'bmlt_location_services'        =>          0,  /* Set this to 1 if you want the location ("Find Near Me") services only available for mobile devices.  */
-    
+
     /********************************************************************************************************************************************************/
     /** This selects the styling theme to be used for display. If you create your own, then set the directory name for that here.                           */
     /** This affects the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes.                                                                       */
     /** Can be 'default', 'BlueAndRed', 'BlueAndWhite', 'GNYR', 'GreenAndGold' or 'GreyAndMaroon'.                                                          */
     /********************************************************************************************************************************************************/
-    
+
     'theme'                         =>          'default',
-    
+
     /********************************************************************************************************************************************************/
     /** These are optional. Most folks will leave them at these values. They are used by the '[[BMLT]]', '[[BMLT_MOBILE]]' and '[[BMLT_MAP]]' shortcodes.   */
     /********************************************************************************************************************************************************/
-    
+
     'grace_period'                  =>          15,     /* How many minutes are allowed to go by before a meeting is considered "too late."                     */
     'time_offset'                   =>          0,      /* Generally left at 0 hours. If the server has a different time offset from this, indicate it here.    */
     'military_time'                 =>          0,      /* This is 1 if you want military (24-hour) time.                                                       */
     'startWeekday'                  =>          1,      /* This is 1-7, as the start weekday of each week (1 = Sunday, 7 = Saturday)                            */
     'lang'                          =>          'en',   /* This is the language code for individual localization.                                               */
     'default_geo_width'             =>          '-10',  /* The default auto-radius value.                                                                       */
-    
+
 /*************************************************************************************************************************************************************
 *^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*
 *################################################################ CHANGE ABOVE THIS LINE ####################################################################*
@@ -146,9 +149,9 @@ $bmlt_basic_configuration[$bmlt_basic_configuration_index] = array (    // Leave
 *############################################################# DON'T CHANGE BELOW THIS LINE #################################################################*
 *VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*
 *************************************************************************************************************************************************************/
-    
+
     /// This is used internally. Leave it alone. It is not supposed to end with a comma.
-    
+
     'id'                            => $bmlt_basic_configuration_index + 1  /* Don't mess with this one. */
 
 );

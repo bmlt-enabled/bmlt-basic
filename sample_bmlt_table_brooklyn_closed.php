@@ -1,4 +1,5 @@
 <?php
+
 /****************************************************************************************************
 * This is a demonstration of using the '[[bmlt_table()]]' shortcode, with parameters that           *
 * ask the root server to return all closed meetings on Thursdays, in the borough of Brooklyn, NY.   *
@@ -16,7 +17,7 @@
 *               http://bmlt.magshare.net/export-calling-syntax                                      *
 ****************************************************************************************************/
 
-require_once(dirname(__FILE__).'/bmlt-basic/bmlt_basic.class.php');
+require_once(dirname(__FILE__) . '/bmlt-basic/bmlt_basic.class.php');
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
