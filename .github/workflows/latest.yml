@@ -75,7 +75,7 @@ jobs:
           doxygen Doxyfile
 
       - name: Deploy Docs
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
