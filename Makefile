@@ -38,3 +38,7 @@ lint: composer ## PHP Lint
 .PHONY: lint-fix
 lint-fix: composer ## PHP Lint Fix
 	bmlt-basic/vendor/squizlabs/php_codesniffer/bin/phpcbf
+
+.PHONY: dev
+dev:  ## Docker up
+	docker-compose up

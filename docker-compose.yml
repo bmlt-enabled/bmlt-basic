@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  bmlt-basic:
+    build: .
+    restart: always
+    ports:
+      - 8080:80
+      - 7443:443
+    volumes:
+      - ./:/var/www/html
+      - ./logs/:/var/log/apache2
