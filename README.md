@@ -54,6 +54,9 @@ There are a number of sample files included with the installation. These are not
 CHANGELIST
 ----------
 
+***Version 3.11.1* ** *- November 17, 2023*
+- Fix various PHP warnings by bumping composer dependencies.
+
 ***Version 3.11.0* ** *- October 12, 2023*
 - Updated dependencies to work with BMLT Root Server 3.x.
 
